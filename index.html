@@ -1,4 +1,3 @@
-<!-- build-trigger -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +29,8 @@
     display:flex;
     min-height:100vh;
   }
+
+  /* ---------- Sidebar ---------- */
   .sidebar{
     width:250px;
     flex-shrink:0;
@@ -106,6 +107,8 @@
     color:#8a8477;
     line-height:1.5;
   }
+
+  /* ---------- Main content ---------- */
   .main{
     flex:1;
     padding:40px 44px;
@@ -117,6 +120,7 @@
   .report.active{
     display:block;
   }
+
   .placeholder{
     border:1px dashed var(--line);
     border-radius:14px;
@@ -135,6 +139,8 @@
     max-width:420px;
     margin:0 auto;
   }
+
+  /* ---------- Report: shared card styles ---------- */
   .sheet{
     max-width:860px;
     background:var(--card);
@@ -190,6 +196,7 @@
     font-size:14px;
     margin-top:2px;
   }
+
   .hero{
     padding:36px 48px 8px;
     display:flex;
@@ -231,6 +238,7 @@
     border-radius:999px;
     border:1px solid var(--gold-light);
   }
+
   .section{
     padding:32px 48px;
   }
@@ -251,6 +259,7 @@
     height:1px;
     background:var(--line);
   }
+
   .breakdown-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -300,6 +309,7 @@
   }
   .cat-delta.up{color:var(--good);}
   .cat-delta.down{color:var(--muted);}
+
   .prod-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -328,6 +338,7 @@
     color:var(--muted);
     margin-top:6px;
   }
+
   .overtime-note{
     margin-top:16px;
     background:#fff8ec;
@@ -341,6 +352,7 @@
     align-items:center;
   }
   .overtime-note strong{color:var(--navy);}
+
   .ytd-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -377,6 +389,7 @@
     margin-top:6px;
   }
   .ytd-card.alt .ytd-sub{color:var(--muted);}
+
   .progress-wrap{
     margin-top:16px;
   }
@@ -400,6 +413,7 @@
     color:#c9c4b3;
   }
   .ytd-card.alt .progress-labels{color:var(--muted);}
+
   .footer{
     padding:24px 48px 36px;
     display:flex;
@@ -410,6 +424,7 @@
     border-top:1px solid var(--line);
   }
   .footer a{color:var(--navy); text-decoration:none; font-weight:600;}
+
   @media (max-width:900px){
     .app{flex-direction:column;}
     .sidebar{width:100%; height:auto; position:relative;}
@@ -427,6 +442,7 @@
 
   <div class="app">
 
+    <!-- ===== Sidebar navigation ===== -->
     <nav class="sidebar">
       <div class="brand">Move Mountains Co.</div>
       <div class="brand-sub">Internal Dashboard</div>
@@ -435,8 +451,29 @@
       <div class="nav-item active" data-target="report-payroll">
         <span class="nav-dot"></span> Payroll
       </div>
-      <div class="nav-item disabled" title="Coming soon">
-        <span class="nav-dot" style="background:#8a8477;"></span> + Add a report
+      <div class="nav-item" data-target="report-sales">
+        <span class="nav-dot"></span> Sales
+      </div>
+      <div class="nav-item" data-target="report-marketing">
+        <span class="nav-dot"></span> Marketing
+      </div>
+      <div class="nav-item" data-target="report-planning">
+        <span class="nav-dot"></span> Planning
+      </div>
+      <div class="nav-item" data-target="report-gear">
+        <span class="nav-dot"></span> Gear
+      </div>
+      <div class="nav-item" data-target="report-scheduling">
+        <span class="nav-dot"></span> Scheduling
+      </div>
+      <div class="nav-item" data-target="report-data">
+        <span class="nav-dot"></span> Data
+      </div>
+      <div class="nav-item" data-target="report-video">
+        <span class="nav-dot"></span> Video
+      </div>
+      <div class="nav-item" data-target="report-photo">
+        <span class="nav-dot"></span> Photo
       </div>
 
       <div class="nav-footer">
@@ -444,8 +481,10 @@
       </div>
     </nav>
 
+    <!-- ===== Main content ===== -->
     <main class="main">
 
+      <!-- ---------- PAYROLL REPORT ---------- -->
       <section id="report-payroll" class="report active">
         <div class="sheet">
           <div class="header">
@@ -572,10 +611,60 @@
         </div>
       </section>
 
-      <section id="report-empty-placeholder" class="report">
+      <!-- ---------- Placeholder reports (not yet built) ---------- -->
+      <section id="report-sales" class="report">
         <div class="placeholder">
-          <h2>More reports coming soon</h2>
-          <p>Ask Claude to add a new report section — it'll show up in the sidebar and load right here.</p>
+          <h2>Sales report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (bookings, revenue, conversion rate, pipeline, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-marketing" class="report">
+        <div class="placeholder">
+          <h2>Marketing report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (leads, ad spend, channel performance, campaign results, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-planning" class="report">
+        <div class="placeholder">
+          <h2>Planning report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (upcoming weddings, timelines, milestones, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-gear" class="report">
+        <div class="placeholder">
+          <h2>Gear report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (inventory, maintenance, rentals, purchases, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-scheduling" class="report">
+        <div class="placeholder">
+          <h2>Scheduling report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (shoot calendar, staff availability, upcoming bookings, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-data" class="report">
+        <div class="placeholder">
+          <h2>Data report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (client analytics, form submissions, business KPIs, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-video" class="report">
+        <div class="placeholder">
+          <h2>Video report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (edits in progress, delivery turnaround, deliverables, etc.) and it'll build this out.</p>
+        </div>
+      </section>
+
+      <section id="report-photo" class="report">
+        <div class="placeholder">
+          <h2>Photo report coming soon</h2>
+          <p>Tell Claude what data source and metrics you want here (galleries in progress, culling/editing status, deliverables, etc.) and it'll build this out.</p>
         </div>
       </section>
 
