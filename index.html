@@ -309,6 +309,16 @@
   }
   .cat-delta.up{color:var(--good);}
   .cat-delta.down{color:var(--muted);}
+  .cat-yoy{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:6px;
+    padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .cat-yoy strong{color:var(--navy);}
+  .cat-yoy.yoy-up strong{color:var(--good);}
+  .cat-yoy.yoy-down strong{color:#a33;}
 
   .prod-grid{
     display:grid;
@@ -729,6 +739,7 @@
                 <div class="cat-amount">32 leads</div>
                 <div class="cat-delta up">▲ 33.3% vs last month</div>
                 <div class="cat-pct">4 bookings · $456 spend · $14.25 CPL · 8% closing</div>
+                <div class="cat-yoy yoy-down">37 last June → <strong>32</strong> (▼ 13.5% YoY)</div>
               </div>
 
               <div class="cat-card">
@@ -736,6 +747,7 @@
                 <div class="cat-amount">20 leads</div>
                 <div class="cat-delta down">▼ 4.8% vs last month</div>
                 <div class="cat-pct">2 bookings · $899 spend · $44.95 CPL · 10% closing</div>
+                <div class="cat-yoy yoy-down">32 last June → <strong>20</strong> (▼ 37.5% YoY)</div>
               </div>
 
               <div class="cat-card">
@@ -743,6 +755,7 @@
                 <div class="cat-amount">20 leads</div>
                 <div class="cat-delta down">▼ 50.0% vs last month</div>
                 <div class="cat-pct">3 bookings · $2,936 spend · $978.67 CPA · 6.7% closing</div>
+                <div class="cat-yoy yoy-down">30 last June → <strong>20</strong> (▼ 33.3% YoY)</div>
               </div>
 
               <div class="cat-card">
@@ -750,6 +763,7 @@
                 <div class="cat-amount">10 leads</div>
                 <div class="cat-delta up">▲ 100% vs last month</div>
                 <div class="cat-pct">1 booking · $0 spend · 10% closing</div>
+                <div class="cat-yoy yoy-down">11 last June → <strong>10</strong> (▼ 9.1% YoY)</div>
               </div>
 
               <div class="cat-card">
@@ -757,6 +771,7 @@
                 <div class="cat-amount">4 leads</div>
                 <div class="cat-delta up">▲ 300% vs last month</div>
                 <div class="cat-pct">0 bookings · $215 spend · $53.75 CPL</div>
+                <div class="cat-yoy yoy-up">0 last June → <strong>4</strong> (new this year)</div>
               </div>
 
               <div class="cat-card">
@@ -764,6 +779,7 @@
                 <div class="cat-amount">2 leads</div>
                 <div class="cat-delta down">▼ 60.0% vs last month</div>
                 <div class="cat-pct">0 bookings · $1,168 spend · $584 CPL</div>
+                <div class="cat-yoy">2 last June → <strong>2</strong> (flat YoY)</div>
               </div>
 
               <div class="cat-card">
@@ -771,6 +787,7 @@
                 <div class="cat-amount">2 leads</div>
                 <div class="cat-delta down">— flat vs last month</div>
                 <div class="cat-pct">0 bookings · $0 spend</div>
+                <div class="cat-yoy yoy-up">1 last June → <strong>2</strong> (▲ 100% YoY)</div>
               </div>
 
               <div class="cat-card">
@@ -778,6 +795,7 @@
                 <div class="cat-amount">0 leads</div>
                 <div class="cat-delta down">— no activity this month</div>
                 <div class="cat-pct">0 bookings · $0 spend</div>
+                <div class="cat-yoy">0 last June → <strong>0</strong> (no activity either year)</div>
               </div>
 
               <div class="cat-card">
@@ -785,6 +803,7 @@
                 <div class="cat-amount">0 leads</div>
                 <div class="cat-delta down">— no activity this month</div>
                 <div class="cat-pct">0 bookings · $0 spend</div>
+                <div class="cat-yoy">0 last June → <strong>0</strong> (no activity either year)</div>
               </div>
 
             </div>
