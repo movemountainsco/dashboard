@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Move Mountains Co. — Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --navy:#161410;
+    --navy-light:#3a3428;
+    --gold:#c9a227;
+    --gold-light:#e9d68a;
+    --bg:#f4f4f2;
+    --card:#ffffff;
+    --ink:#111111;
+    --muted:#666666;
+    --line:#e4e2dc;
+    --good:#8a6d00;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    height:100%;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  .app{
+    display:flex;
+    min-height:100vh;
+  }
+  .sidebar{
+    width:250px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+    color:#fff;
+    padding:28px 20px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .brand{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    color:var(--gold-light);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .brand-sub{
+    font-size:13px;
+    color:#c9c4b3;
+    margin-bottom:28px;
+  }
+  .nav-section-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#8a8477;
+    font-weight:600;
+    margin:18px 0 8px;
+  }
+  .nav-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 12px;
+    border-radius:8px;
+    color:#e8e4da;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    margin-bottom:4px;
+    border:1px solid transparent;
+  }
+  .nav-item:hover{
+    background:rgba(255,255,255,0.06);
+  }
+  .nav-item.active{
+    background:rgba(201,162,39,0.15);
+    border:1px solid rgba(201,162,39,0.4);
+    color:#fff;
+  }
+  .nav-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    flex-shrink:0;
+  }
+  .nav-item.disabled{
+    opacity:0.45;
+    cursor:default;
+  }
+  .nav-item.disabled:hover{
+    background:transparent;
+  }
+  .nav-footer{
+    margin-top:32px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    font-size:11px;
+    color:#8a8477;
+    line-height:1.5;
+  }
+  .main{
+    flex:1;
+    padding:40px 44px;
+    max-width:1000px;
+  }
+  .report{
+    display:none;
+  }
+  .report.active{
+    display:block;
+  }
+  .placeholder{
+    border:1px dashed var(--line);
+    border-radius:14px;
+    padding:60px 40px;
+    text-align:center;
+    color:var(--muted);
+    background:#fbfaf8;
+  }
+  .placeholder h2{
+    color:var(--ink);
+    font-size:20px;
+    margin:0 0 8px;
+  }
+  .placeholder p{
+    font-size:14px;
+    max-width:420px;
+    margin:0 auto;
+  }
+  .sheet{
+    max-width:860px;
+    background:var(--card);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(15,31,51,0.08);
+  }
+  .header{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color:#fff;
+    padding:44px 48px 36px;
+    position:relative;
+  }
+  .header::after{
+    content:"";
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .header h1{
+    margin:0 0 6px;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.3px;
+  }
+  .header p{
+    margin:0;
+    color:#c9c4b3;
+    font-size:14px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .meta-item{
+    font-size:12px;
+    color:#c9c4b3;
+  }
+  .meta-item strong{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    margin-top:2px;
+  }
+  .hero{
+    padding:36px 48px 8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:32px;
+  }
+  .hero-label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .hero-number{
+    font-size:40px;
+    font-weight:700;
+    color:var(--navy);
+    letter-spacing:-1px;
+  }
+  .hero-sub{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:#faf3d9;
+    color:var(--good);
+    font-size:12px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--gold-light);
+  }
+  .section{
+    padding:32px 48px;
+  }
+  .section-title{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--navy);
+    font-weight:700;
+    margin:0 0 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .breakdown-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+  }
+  .cat-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    background:#fbfaf8;
+  }
+  .cat-name{
+    font-size:12px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .cat-amount{
+    font-size:22px;
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:10px;
+  }
+  .bar-track{
+    height:6px;
+    background:var(--line);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--gold), var(--navy-light));
+    border-radius:99px;
+  }
+  .cat-pct{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  .cat-delta{
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:8px;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  .cat-delta.up{color:var(--good);}
+  .cat-delta.down{color:var(--muted);}
+  .prod-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:14px;
+  }
+  .prod-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    background:#fbfaf8;
+  }
+  .prod-name{
+    font-size:12px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .prod-value{
+    font-size:22px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .prod-sub{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  .overtime-note{
+    margin-top:16px;
+    background:#fff8ec;
+    border:1px solid var(--gold-light);
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:13px;
+    color:#7a5c1e;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .overtime-note strong{color:var(--navy);}
+  .ytd-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .ytd-card{
+    border-radius:10px;
+    padding:22px;
+    background:var(--navy);
+    color:#fff;
+  }
+  .ytd-card.alt{
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .ytd-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .ytd-card.alt .ytd-label{color:var(--muted);}
+  .ytd-value{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:-0.5px;
+  }
+  .ytd-sub{
+    font-size:12px;
+    color:#c9c4b3;
+    margin-top:6px;
+  }
+  .ytd-card.alt .ytd-sub{color:var(--muted);}
+  .progress-wrap{
+    margin-top:16px;
+  }
+  .progress-track{
+    height:8px;
+    background:rgba(255,255,255,0.15);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .ytd-card.alt .progress-track{background:var(--line);}
+  .progress-fill{
+    height:100%;
+    background:var(--gold);
+    border-radius:99px;
+  }
+  .progress-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    margin-top:8px;
+    color:#c9c4b3;
+  }
+  .ytd-card.alt .progress-labels{color:var(--muted);}
+  .footer{
+    padding:24px 48px 36px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:11px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  .footer a{color:var(--navy); text-decoration:none; font-weight:600;}
+  @media (max-width:900px){
+    .app{flex-direction:column;}
+    .sidebar{width:100%; height:auto; position:relative;}
+    .main{padding:24px;}
+    .breakdown-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .breakdown-grid{grid-template-columns:1fr;}
+    .ytd-grid, .prod-grid{grid-template-columns:1fr;}
+    .header, .hero, .section, .footer{padding-left:24px; padding-right:24px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="app">
+
+    <nav class="sidebar">
+      <div class="brand">Move Mountains Co.</div>
+      <div class="brand-sub">Internal Dashboard</div>
+
+      <div class="nav-section-label">Reports</div>
+      <div class="nav-item active" data-target="report-payroll">
+        <span class="nav-dot"></span> Payroll
+      </div>
+      <div class="nav-item disabled" title="Coming soon">
+        <span class="nav-dot" style="background:#8a8477;"></span> + Add a report
+      </div>
+
+      <div class="nav-footer">
+        Reports refresh each time this page is deployed. Ask Claude to add a new report section anytime.
+      </div>
+    </nav>
+
+    <main class="main">
+
+      <section id="report-payroll" class="report active">
+        <div class="sheet">
+          <div class="header">
+            <div class="eyebrow">Move Mountains Co. · Internal Report</div>
+            <h1>Weekly Payroll Report</h1>
+            <p>Sourced automatically from Jotform payroll submissions</p>
+            <div class="meta-row">
+              <div class="meta-item">Week Of<strong>July 3, 2026</strong></div>
+              <div class="meta-item">Report Generated<strong>July 10, 2026</strong></div>
+              <div class="meta-item">Weeks Elapsed (YTD)<strong>27 of 52</strong></div>
+            </div>
+          </div>
+
+          <div class="hero">
+            <div>
+              <div class="hero-label">Total Paid Out This Week</div>
+              <div class="hero-number">$27,738.39</div>
+              <div class="hero-sub">Across W2 payroll, contractors, commissions &amp; overtime</div>
+            </div>
+            <div class="badge">▲ 12.8% vs last week ($24,595.49)</div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">This Week's Breakdown</h2>
+            <div class="breakdown-grid">
+
+              <div class="cat-card">
+                <div class="cat-name">W2 Hourly</div>
+                <div class="cat-amount">$10,627.03</div>
+                <div class="cat-delta up">▲ 151.4% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" style="width:38.3%"></div></div>
+                <div class="cat-pct">38.3% of weekly total</div>
+              </div>
+
+              <div class="cat-card">
+                <div class="cat-name">Shooters</div>
+                <div class="cat-amount">$4,302.88</div>
+                <div class="cat-delta down">▼ 44.1% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" style="width:15.5%"></div></div>
+                <div class="cat-pct">15.5% of weekly total</div>
+              </div>
+
+              <div class="cat-card">
+                <div class="cat-name">W2 Salary</div>
+                <div class="cat-amount">$4,034.35</div>
+                <div class="cat-delta down">▼ 4.6% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" style="width:14.5%"></div></div>
+                <div class="cat-pct">14.5% of weekly total</div>
+              </div>
+
+              <div class="cat-card">
+                <div class="cat-name">Commissions</div>
+                <div class="cat-amount">$3,371.05</div>
+                <div class="cat-delta up">▲ 190.7% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" style="width:12.2%"></div></div>
+                <div class="cat-pct">12.2% of weekly total</div>
+              </div>
+
+              <div class="cat-card">
+                <div class="cat-name">Editors</div>
+                <div class="cat-amount">$2,910.00</div>
+                <div class="cat-delta down">▼ 14.6% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" style="width:10.5%"></div></div>
+                <div class="cat-pct">10.5% of weekly total</div>
+              </div>
+
+              <div class="cat-card">
+                <div class="cat-name">VA's (Admins)</div>
+                <div class="cat-amount">$2,410.00</div>
+                <div class="cat-delta up">▲ 43.7% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" style="width:8.7%"></div></div>
+                <div class="cat-pct">8.7% of weekly total</div>
+              </div>
+
+            </div>
+
+            <div class="prod-grid">
+              <div class="prod-card">
+                <div class="prod-name">Galleries Delivered</div>
+                <div class="prod-value">10 galleries</div>
+                <div class="prod-sub">$1,260.00 total paid · $126.00 avg / gallery</div>
+              </div>
+              <div class="prod-card">
+                <div class="prod-name">Highlights Delivered</div>
+                <div class="prod-value">3 highlights</div>
+                <div class="prod-sub">$1,450.00 total paid · $483.33 avg / highlight</div>
+              </div>
+            </div>
+
+            <div class="overtime-note">
+              <span>Overtime hours logged this week</span>
+              <strong>6 hrs 1 min</strong>
+            </div>
+          </div>
+
+          <div class="section" style="padding-top:8px;">
+            <h2 class="section-title">Year-to-Date &amp; Projection</h2>
+            <div class="ytd-grid">
+
+              <div class="ytd-card">
+                <div class="ytd-label">YTD Total Paid Out</div>
+                <div class="ytd-value">$585,709.03</div>
+                <div class="ytd-sub">Across 27 weeks of payroll (W2 · Contractors · Commissions · Bonuses)</div>
+                <div class="progress-wrap">
+                  <div class="progress-track"><div class="progress-fill" style="width:52%"></div></div>
+                  <div class="progress-labels"><span>Week 27</span><span>52 weeks</span></div>
+                </div>
+              </div>
+
+              <div class="ytd-card alt">
+                <div class="ytd-label">Projected Full-Year Spend</div>
+                <div class="ytd-value">$1,128,032.21</div>
+                <div class="ytd-sub">Based on current weekly pace, projected by the payroll form</div>
+                <div class="ytd-sub" style="margin-top:12px;">W2-only projection: <strong style="color:var(--navy);">$937,686.36</strong></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="footer">
+            <span>Generated automatically each Monday from Jotform Payroll submissions.</span>
+            <a href="#">Move Mountains Co.</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="report-empty-placeholder" class="report">
+        <div class="placeholder">
+          <h2>More reports coming soon</h2>
+          <p>Ask Claude to add a new report section — it'll show up in the sidebar and load right here.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.querySelectorAll('.nav-item[data-target]').forEach(function(item){
+      item.addEventListener('click', function(){
+        document.querySelectorAll('.nav-item[data-target]').forEach(function(n){ n.classList.remove('active'); });
+        document.querySelectorAll('.report').forEach(function(r){ r.classList.remove('active'); });
+        item.classList.add('active');
+        document.getElementById(item.getAttribute('data-target')).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
