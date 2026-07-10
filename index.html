@@ -414,6 +414,84 @@
   }
   .ytd-card.alt .progress-labels{color:var(--muted);}
 
+  .yoy-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:12px;
+  }
+  .yoy-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 14px;
+    background:#fbfaf8;
+    text-align:center;
+  }
+  .yoy-name{
+    font-size:11px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .yoy-value{
+    font-size:20px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .yoy-prev{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .yoy-delta{
+    font-size:11px;
+    font-weight:700;
+    margin-top:6px;
+  }
+  .yoy-delta.up{color:var(--good);}
+  .yoy-delta.down{color:#a33;}
+  .yoy-delta.flat{color:var(--muted);}
+
+  .ai-insight{
+    margin-top:20px;
+    border:1px solid var(--gold-light);
+    border-radius:12px;
+    background:linear-gradient(135deg, #fffaf0 0%, #fff8ec 100%);
+    padding:20px 24px;
+  }
+  .ai-insight-label{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:700;
+    color:var(--good);
+    margin-bottom:10px;
+  }
+  .ai-insight-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+  .ai-insight p{
+    font-size:13.5px;
+    line-height:1.7;
+    color:#3a3020;
+    margin:0 0 10px;
+  }
+  .ai-insight p:last-child{margin-bottom:0;}
+
+  @media (max-width:900px){
+    .yoy-grid{grid-template-columns:repeat(3, 1fr);}
+  }
+  @media (max-width:600px){
+    .yoy-grid{grid-template-columns:1fr 1fr;}
+  }
+
   .footer{
     padding:24px 48px 36px;
     display:flex;
@@ -741,20 +819,57 @@
           </div>
 
           <div class="section" style="padding-top:8px;">
-            <h2 class="section-title">Year-over-Year &amp; Notes</h2>
-            <div class="ytd-grid">
+            <h2 class="section-title">June 2025 vs. June 2026</h2>
+            <div class="yoy-grid">
 
-              <div class="ytd-card">
-                <div class="ytd-label">YOY Lead Growth</div>
-                <div class="ytd-value">-27%</div>
-                <div class="ytd-sub">vs. 147 leads in June of last year (777 leads YTD this year)</div>
+              <div class="yoy-card">
+                <div class="yoy-name">Total Leads</div>
+                <div class="yoy-value">108</div>
+                <div class="yoy-prev">149 last June</div>
+                <div class="yoy-delta down">▼ 27.5% YoY</div>
               </div>
 
-              <div class="ytd-card alt">
+              <div class="yoy-card">
+                <div class="yoy-name">Ad Spend</div>
+                <div class="yoy-value">$6,209</div>
+                <div class="yoy-prev">$6,209 last June</div>
+                <div class="yoy-delta flat">— flat YoY</div>
+              </div>
+
+              <div class="yoy-card">
+                <div class="yoy-name">Bookings</div>
+                <div class="yoy-value">13</div>
+                <div class="yoy-prev">16 last June</div>
+                <div class="yoy-delta down">▼ 18.8% YoY</div>
+              </div>
+
+              <div class="yoy-card">
+                <div class="yoy-name">Blended CPL</div>
+                <div class="yoy-value">$57</div>
+                <div class="yoy-prev">$42 last June</div>
+                <div class="yoy-delta down">▲ 35.7% YoY</div>
+              </div>
+
+              <div class="yoy-card">
+                <div class="yoy-name">Blended CPA</div>
+                <div class="yoy-value">$517</div>
+                <div class="yoy-prev">$388 last June</div>
+                <div class="yoy-delta down">▲ 33.2% YoY</div>
+              </div>
+
+            </div>
+
+            <div class="ytd-grid" style="margin-top:20px;">
+              <div class="ytd-card alt" style="grid-column:1 / -1;">
                 <div class="ytd-label">This Month's Strategy</div>
                 <div class="ytd-sub" style="color:var(--ink); font-size:13px; line-height:1.5;">Facebook outreach back on track (120 new groups joined); TikTok content scheduled for July; blog schedule set across LuxeBooth, MMC &amp; Wild at Heart brands.</div>
               </div>
+            </div>
 
+            <div class="ai-insight">
+              <div class="ai-insight-label"><span class="ai-insight-dot"></span>AI Insights</div>
+              <p><strong>Funnel health:</strong> Leads are down both month-over-month (-4.8% vs. May, excluding the total tick-up driven by Vendor Referrals and Wedding Wire) and year-over-year (-27.5% vs. June 2025). Ad spend held essentially flat YoY ($6,209 both years), but blended CPL rose 35.7% and CPA rose 33.2% — the same budget is now buying fewer, pricier leads. Bookings fell faster than leads (-18.8% YoY vs. -27.5% for leads), which points to a softening close rate on top of the volume dip, worth watching separately from top-of-funnel changes.</p>
+              <p><strong>Channel story:</strong> Vendor Referrals remains the standout channel — highest lead volume, lowest CPL among active channels, and +33.3% MoM growth — and held up best YoY among the historically strong sources. Instagram and The Knot, last year's #2 and #3 lead sources, both cooled sharply (-37.5% and -33.3% YoY respectively); worth a closer look before assuming it's seasonal. TikTok's growth (+100% MoM and YoY) is off a very small base and too early to call a trend.</p>
             </div>
           </div>
 
