@@ -1,1 +1,650 @@
-FILE_CONTENTS_PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Move Mountains Co. — Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --navy:#161410;
+    --navy-light:#3a3428;
+    --gold:#c9a227;
+    --gold-light:#e9d68a;
+    --bg:#f4f4f2;
+    --card:#ffffff;
+    --ink:#111111;
+    --muted:#666666;
+    --line:#e4e2dc;
+    --good:#8a6d00;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    height:100%;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  .app{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:250px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-light) 100%);
+    color:#fff;
+    padding:28px 20px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .brand{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    color:var(--gold-light);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .brand-sub{
+    font-size:13px;
+    color:#c9c4b3;
+    margin-bottom:28px;
+  }
+  .nav-section-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#8a8477;
+    font-weight:600;
+    margin:18px 0 8px;
+  }
+  .nav-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 12px;
+    border-radius:8px;
+    color:#e8e4da;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    margin-bottom:4px;
+    border:1px solid transparent;
+  }
+  .nav-item:hover{
+    background:rgba(255,255,255,0.06);
+  }
+  .nav-item.active{
+    background:rgba(201,162,39,0.15);
+    border:1px solid rgba(201,162,39,0.4);
+    color:#fff;
+  }
+  .nav-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    flex-shrink:0;
+  }
+  .nav-item.disabled{
+    opacity:0.45;
+    cursor:default;
+  }
+  .nav-item.disabled:hover{
+    background:transparent;
+  }
+  .nav-footer{
+    margin-top:32px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    font-size:11px;
+    color:#8a8477;
+    line-height:1.5;
+  }
+
+  /* ---------- Main content ---------- */
+  .main{
+    flex:1;
+    padding:40px 44px;
+    max-width:1000px;
+  }
+  .report{
+    display:none;
+  }
+  .report.active{
+    display:block;
+  }
+
+  .placeholder{
+    border:1px dashed var(--line);
+    border-radius:14px;
+    padding:60px 40px;
+    text-align:center;
+    color:var(--muted);
+    background:#fbfaf8;
+  }
+  .placeholder h2{
+    color:var(--ink);
+    font-size:20px;
+    margin:0 0 8px;
+  }
+  .placeholder p{
+    font-size:14px;
+    max-width:420px;
+    margin:0 auto;
+  }
+
+  /* ---------- Report: shared card styles ---------- */
+  .sheet{
+    max-width:860px;
+    background:var(--card);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(15,31,51,0.08);
+  }
+  .header{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color:#fff;
+    padding:44px 48px 36px;
+    position:relative;
+  }
+  .header::after{
+    content:"";
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .header h1{
+    margin:0 0 6px;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.3px;
+  }
+  .header p{
+    margin:0;
+    color:#c9c4b3;
+    font-size:14px;
+  }
+  .meta-row{
+    display:flex;
+    gap:28px;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .meta-item{
+    font-size:12px;
+    color:#c9c4b3;
+  }
+  .meta-item strong{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    margin-top:2px;
+  }
+
+  .hero{
+    padding:36px 48px 8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:32px;
+  }
+  .hero-label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .hero-number{
+    font-size:40px;
+    font-weight:700;
+    color:var(--navy);
+    letter-spacing:-1px;
+  }
+  .hero-sub{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:#faf3d9;
+    color:var(--good);
+    font-size:12px;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--gold-light);
+  }
+
+  .section{
+    padding:32px 48px;
+  }
+  .section-title{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--navy);
+    font-weight:700;
+    margin:0 0 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .breakdown-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+  }
+  .cat-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    background:#fbfaf8;
+  }
+  .cat-name{
+    font-size:12px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .cat-amount{
+    font-size:22px;
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:10px;
+  }
+  .bar-track{
+    height:6px;
+    background:var(--line);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--gold), var(--navy-light));
+    border-radius:99px;
+  }
+  .cat-pct{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  .cat-delta{
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:8px;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  .cat-delta.up{color:var(--good);}
+  .cat-delta.down{color:var(--muted);}
+  .cat-yoy{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:6px;
+    padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .cat-yoy strong{color:var(--navy);}
+  .cat-yoy.yoy-up strong{color:var(--good);}
+  .cat-yoy.yoy-down strong{color:#a33;}
+
+  .prod-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:14px;
+  }
+  .prod-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    background:#fbfaf8;
+  }
+  .prod-name{
+    font-size:12px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .prod-value{
+    font-size:22px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .prod-sub{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  .overtime-note{
+    margin-top:16px;
+    background:#fff8ec;
+    border:1px solid var(--gold-light);
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:13px;
+    color:#7a5c1e;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .overtime-note strong{color:var(--navy);}
+
+  .ytd-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .ytd-card{
+    border-radius:10px;
+    padding:22px;
+    background:var(--navy);
+    color:#fff;
+  }
+  .ytd-card.alt{
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .ytd-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--gold-light);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .ytd-card.alt .ytd-label{color:var(--muted);}
+  .ytd-value{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:-0.5px;
+  }
+  .ytd-sub{
+    font-size:12px;
+    color:#c9c4b3;
+    margin-top:6px;
+  }
+  .ytd-card.alt .ytd-sub{color:var(--muted);}
+
+  .progress-wrap{
+    margin-top:16px;
+  }
+  .progress-track{
+    height:8px;
+    background:rgba(255,255,255,0.15);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .ytd-card.alt .progress-track{background:var(--line);}
+  .progress-fill{
+    height:100%;
+    background:var(--gold);
+    border-radius:99px;
+  }
+  .progress-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    margin-top:8px;
+    color:#c9c4b3;
+  }
+  .ytd-card.alt .progress-labels{color:var(--muted);}
+
+  .yoy-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:12px;
+  }
+  .yoy-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 14px;
+    background:#fbfaf8;
+    text-align:center;
+  }
+  .yoy-name{
+    font-size:11px;
+    color:var(--muted);
+    font-weight:600;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .yoy-value{
+    font-size:20px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .yoy-prev{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .yoy-delta{
+    font-size:11px;
+    font-weight:700;
+    margin-top:6px;
+  }
+  .yoy-delta.up{color:var(--good);}
+  .yoy-delta.down{color:#a33;}
+  .yoy-delta.flat{color:var(--muted);}
+
+  .ai-insight{
+    margin-top:20px;
+    border:1px solid var(--gold-light);
+    border-radius:12px;
+    background:linear-gradient(135deg, #fffaf0 0%, #fff8ec 100%);
+    padding:20px 24px;
+  }
+  .ai-insight-label{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:700;
+    color:var(--good);
+    margin-bottom:10px;
+  }
+  .ai-insight-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+  .ai-insight p{
+    font-size:13.5px;
+    line-height:1.7;
+    color:#3a3020;
+    margin:0 0 10px;
+  }
+  .ai-insight p:last-child{margin-bottom:0;}
+
+  .history-details{
+    margin-top:20px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .history-details summary{
+    cursor:pointer;
+    padding:14px 18px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--navy);
+    background:#fbfaf8;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .history-details summary::-webkit-details-marker{display:none;}
+  .history-details summary::after{content:"Show \25BE"; color:var(--muted); font-size:11px; font-weight:600;}
+  .history-details[open] summary::after{content:"Hide \25B4";}
+  .history-details[open] summary{border-bottom:1px solid var(--line);}
+  .history-scroll{max-height:360px; overflow-y:auto;}
+  .history-table{width:100%; border-collapse:collapse; font-size:12px;}
+  .history-table th{
+    position:sticky; top:0;
+    text-align:left;
+    padding:8px 18px;
+    color:var(--muted);
+    font-weight:600;
+    text-transform:uppercase;
+    font-size:10px;
+    letter-spacing:0.5px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .history-table td{
+    padding:7px 18px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+  }
+  .history-table tr:last-child td{border-bottom:none;}
+  .history-delta.up{color:var(--good); font-weight:600;}
+  .history-delta.down{color:var(--muted); font-weight:600;}
+
+  @media (max-width:900px){
+    .yoy-grid{grid-template-columns:repeat(3, 1fr);}
+  }
+  @media (max-width:600px){
+    .yoy-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  .footer{
+    padding:24px 48px 36px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:11px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  .footer a{color:var(--navy); text-decoration:none; font-weight:600;}
+
+  @media (max-width:900px){
+    .app{flex-direction:column;}
+    .sidebar{width:100%; height:auto; position:relative;}
+    .main{padding:24px;}
+    .breakdown-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .breakdown-grid{grid-template-columns:1fr;}
+    .ytd-grid, .prod-grid{grid-template-columns:1fr;}
+    .header, .hero, .section, .footer{padding-left:24px; padding-right:24px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ===== Sidebar navigation ===== -->
+    <nav class="sidebar">
+      <div class="brand">Move Mountains Co.</div>
+      <div class="brand-sub">Internal Dashboard</div>
+
+      <div class="nav-item active" data-target="report-overview" style="margin-bottom:14px;">
+        <span class="nav-dot"></span> Overview
+      </div>
+
+      <div class="nav-section-label" id="reports-toggle" style="cursor:pointer; display:flex; align-items:center; justify-content:space-between; user-select:none;">
+        <span>Reports</span>
+        <span id="reports-chevron" style="transition:transform 0.2s; font-size:10px;">&#9662;</span>
+      </div>
+      <div id="reports-list">
+        <div class="nav-item" data-target="report-payroll">
+          <span class="nav-dot"></span> Payroll
+        </div>
+        <div class="nav-item" data-target="report-sales">
+          <span class="nav-dot"></span> Sales
+        </div>
+        <div class="nav-item" data-target="report-marketing">
+          <span class="nav-dot"></span> Marketing
+        </div>
+        <div class="nav-item" data-target="report-planning">
+          <span class="nav-dot"></span> Planning
+        </div>
+        <div class="nav-item" data-target="report-gear">
+          <span class="nav-dot"></span> Gear
+        </div>
+        <div class="nav-item" data-target="report-scheduling">
+          <span class="nav-dot"></span> Scheduling
+        </div>
+        <div class="nav-item" data-target="report-data">
+          <span class="nav-dot"></span> Data
+        </div>
+        <div class="nav-item" data-target="report-video">
+          <span class="nav-dot"></span> Video
+        </div>
+        <div class="nav-item" data-target="report-photo">
+          <span class="nav-dot"></span> Photo
+        </div>
+        <div class="nav-item" data-target="report-orders">
+          <span class="nav-dot"></span> Orders
+        </div>
+        <div class="nav-item" data-target="report-tickets">
+          <span class="nav-dot"></span> Tickets
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        Reports refresh each time this page is deployed. Ask Claude to add a new report section anytime.
+      </div>
+    </nav>
+
+    <!-- ===== Main content ===== -->
+    <main class="main">
+
+      <!-- ---------- EXECUTIVE OVERVIEW ---------- -->
+      <section id="report-overview" class="report active">
+        <div class="sheet">
+          <div class="header">
+            <div class="eyebrow">Move Mountains Co. · Executive Overview</div>
+            <h1>Executive Overview</h1>
+            <p>Real-time snapshot pulled from every department report below — click any card to jump straight to that report</p>
+            <div class="meta-row">
+              <div class="meta-item">Report Generated<strong>July 11, 2026</strong></div>
+              <div class="meta-item">Departments Tracked<strong>11</strong></div>
+              <div class="meta-item">Critical Flags<strong>3</strong></div>
+            </div>
+          </div>
+
+          <div class="hero">
+            <div>
