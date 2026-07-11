@@ -2529,3 +2529,45 @@
         </div>
       </section>
 
+    </main>
+  </div>
+
+  <script>
+    document.querySelectorAll('.nav-item[data-target]').forEach(function(item){
+      item.addEventListener('click', function(){
+        document.querySelectorAll('.nav-item[data-target]').forEach(function(n){ n.classList.remove('active'); });
+        document.querySelectorAll('.report').forEach(function(r){ r.classList.remove('active'); });
+        item.classList.add('active');
+        document.getElementById(item.getAttribute('data-target')).classList.add('active');
+      });
+    });
+
+    (function(){
+      var toggle = document.getElementById('reports-toggle');
+      var list = document.getElementById('reports-list');
+      var chevron = document.getElementById('reports-chevron');
+      toggle.addEventListener('click', function(){
+        var collapsed = list.style.display === 'none';
+        list.style.display = collapsed ? '' : 'none';
+        chevron.style.transform = collapsed ? 'rotate(0deg)' : 'rotate(-90deg)';
+      });
+    })();
+
+    document.querySelectorAll('[data-jump]').forEach(function(card){
+      card.addEventListener('click', function(){
+        var targetId = card.getAttribute('data-jump');
+        var navItem = document.querySelector('.nav-item[data-target="' + targetId + '"]');
+        if (navItem) {
+          var list = document.getElementById('reports-list');
+          if (list && list.style.display === 'none') {
+            list.style.display = '';
+            document.getElementById('reports-chevron').style.transform = 'rotate(0deg)';
+          }
+          navItem.click();
+          navItem.scrollIntoView({ block: 'nearest' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
