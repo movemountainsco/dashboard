@@ -580,36 +580,44 @@
       <div class="brand">Move Mountains Co.</div>
       <div class="brand-sub">Internal Dashboard</div>
 
-      <div class="nav-section-label">Reports</div>
-      <div class="nav-item active" data-target="report-payroll">
-        <span class="nav-dot"></span> Payroll
+      <div class="nav-section-label" id="reports-toggle" style="cursor:pointer; display:flex; align-items:center; justify-content:space-between; user-select:none;">
+        <span>Reports</span>
+        <span id="reports-chevron" style="transition:transform 0.2s; font-size:10px;">&#9662;</span>
       </div>
-      <div class="nav-item" data-target="report-sales">
-        <span class="nav-dot"></span> Sales
-      </div>
-      <div class="nav-item" data-target="report-marketing">
-        <span class="nav-dot"></span> Marketing
-      </div>
-      <div class="nav-item" data-target="report-planning">
-        <span class="nav-dot"></span> Planning
-      </div>
-      <div class="nav-item" data-target="report-gear">
-        <span class="nav-dot"></span> Gear
-      </div>
-      <div class="nav-item" data-target="report-scheduling">
-        <span class="nav-dot"></span> Scheduling
-      </div>
-      <div class="nav-item" data-target="report-data">
-        <span class="nav-dot"></span> Data
-      </div>
-      <div class="nav-item" data-target="report-video">
-        <span class="nav-dot"></span> Video
-      </div>
-      <div class="nav-item" data-target="report-photo">
-        <span class="nav-dot"></span> Photo
-      </div>
-      <div class="nav-item" data-target="report-orders">
-        <span class="nav-dot"></span> Orders
+      <div id="reports-list">
+        <div class="nav-item active" data-target="report-payroll">
+          <span class="nav-dot"></span> Payroll
+        </div>
+        <div class="nav-item" data-target="report-sales">
+          <span class="nav-dot"></span> Sales
+        </div>
+        <div class="nav-item" data-target="report-marketing">
+          <span class="nav-dot"></span> Marketing
+        </div>
+        <div class="nav-item" data-target="report-planning">
+          <span class="nav-dot"></span> Planning
+        </div>
+        <div class="nav-item" data-target="report-tickets">
+          <span class="nav-dot"></span> Tickets
+        </div>
+        <div class="nav-item" data-target="report-gear">
+          <span class="nav-dot"></span> Gear
+        </div>
+        <div class="nav-item" data-target="report-scheduling">
+          <span class="nav-dot"></span> Scheduling
+        </div>
+        <div class="nav-item" data-target="report-data">
+          <span class="nav-dot"></span> Data
+        </div>
+        <div class="nav-item" data-target="report-video">
+          <span class="nav-dot"></span> Video
+        </div>
+        <div class="nav-item" data-target="report-photo">
+          <span class="nav-dot"></span> Photo
+        </div>
+        <div class="nav-item" data-target="report-orders">
+          <span class="nav-dot"></span> Orders
+        </div>
       </div>
 
       <div class="nav-footer">
@@ -1443,6 +1451,91 @@
 
           <div class="footer">
             <span>Generated automatically each week from Jotform Planning EOW &amp; Upsells EOW submissions.</span>
+            <a href="#">Move Mountains Co.</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- TICKETS REPORT ---------- -->
+      <section id="report-tickets" class="report">
+        <div class="sheet">
+          <div class="header">
+            <div class="eyebrow">Move Mountains Co. · Internal Report</div>
+            <h1>Client Tickets Report</h1>
+            <p>Sourced automatically from Jotform "Client Support Ticket Closed" submissions · assessed against the MMC Client Response Protocols doc</p>
+            <div class="meta-row">
+              <div class="meta-item">Year<strong>2026</strong></div>
+              <div class="meta-item">Report Generated<strong>July 11, 2026</strong></div>
+              <div class="meta-item">Tickets Logged YTD<strong>1</strong></div>
+            </div>
+          </div>
+
+          <div class="hero">
+            <div>
+              <div class="hero-label">Tickets Logged in 2026</div>
+              <div class="hero-number">1</div>
+              <div class="hero-sub">1 ticket closed/logged so far this year, in the Photo Revisions department</div>
+            </div>
+          </div>
+
+          <div class="section" style="padding-top:24px; padding-bottom:0;">
+            <div class="overtime-note" style="background:#fff8ec; border-color:var(--gold-light); color:#7a5c1e; display:block;">
+              <strong style="color:var(--navy); display:block; margin-bottom:6px;">Scope Note</strong>
+              <span style="display:block; line-height:1.6;">Per your instruction, this report only includes tickets logged in the current year (2026) moving forward — older tickets (the form has 81 on record since inception) are intentionally excluded. Only 1 ticket has been logged in 2026 so far, and this form's "Date" (when the closure was submitted) and "Date Ticket Was Created" (when the issue actually came in) can be months apart — the one 2026 ticket below was created Oct 16, 2025 but not logged as closed until Jan 13, 2026, an 89-day gap. Worth confirming whether this form is filled out promptly when tickets close, since a ticket count this low likely undercounts real client issues if there's a backlog of unlogged closures.</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">Tickets by Department</h2>
+            <div class="breakdown-grid" style="grid-template-columns:1fr 1fr 1fr;">
+              <div class="cat-card">
+                <div class="cat-name">Photo Revisions</div>
+                <div class="cat-amount">1</div>
+                <div class="cat-pct">100% of 2026 tickets</div>
+              </div>
+              <div class="cat-card">
+                <div class="cat-name">Video Revisions</div>
+                <div class="cat-amount">0</div>
+                <div class="cat-pct">No tickets logged in 2026</div>
+              </div>
+              <div class="cat-card">
+                <div class="cat-name">All Other Departments</div>
+                <div class="cat-amount">0</div>
+                <div class="cat-pct">No tickets logged in 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section" style="padding-top:8px;">
+            <h2 class="section-title">Photo Revisions — Ticket Detail</h2>
+            <div class="overtime-note" style="background:#fff8ec; border-color:var(--gold-light); color:#3a3020; display:block;">
+              <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+                <strong style="color:var(--navy); font-size:14px;">Erin Martin — Engagement Gallery</strong>
+                <span style="font-size:11px; color:var(--muted);">Wedding Date: Oct 17, 2026 · Handled by Chelsea Mace</span>
+              </div>
+              <div style="font-size:12px; line-height:1.7;">
+                <div style="margin-bottom:8px;"><strong style="color:var(--navy);">Timeline:</strong> Ticket created Oct 16, 2025 → closed/logged Jan 13, 2026 (89 days)</div>
+                <div style="margin-bottom:8px;"><strong style="color:var(--navy);">Client's Original Issue:</strong> Unhappy with engagement shoot editing — asked for uneven spray-tan skin tone to be smoothed, a visible bra strap removed, and background people edited out. Client felt misled about what editing was included in her package.</div>
+                <div style="margin-bottom:8px;"><strong style="color:var(--navy);">Protocol Match:</strong> This spans two sections of the Client Response Protocols doc — <strong>P04 (Underwear/Clothing Visible in Photos)</strong> and <strong>P05 (Incomplete Editing — Backgrounds, Blemishes, Shadows)</strong>. Both are Severity Medium, Tier 1 (coordinator handles, no approval needed), 24-hour acknowledgment SLA, resolved with a free re-edit of the specific images — no cash compensation called for at this tier.</div>
+                <div style="margin-bottom:8px;"><strong style="color:var(--navy);">Resolution Given:</strong> "We gave a complimentary round of photo shopping to their engagement gallery and reset client expectations." Reason logged for closing: <em>Created Solution</em>. This matches what the protocol prescribes for both P04 and P05 — correctly handled at Tier 1, no escalation needed.</div>
+                <div style="display:flex; gap:24px; flex-wrap:wrap; margin-top:10px; padding-top:10px; border-top:1px dashed var(--gold-light);">
+                  <div><strong style="color:var(--navy);">Total COGS:</strong> $1,350 <span style="color:var(--muted); font-size:11px;">(real internal cost of the "free" fix)</span></div>
+                  <div><strong style="color:#a33;">Client Satisfaction:</strong> 2 / 5 <span style="color:var(--muted); font-size:11px;">(low, despite a protocol-correct resolution)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section" style="padding-top:8px;">
+            <div class="ai-insight">
+              <div class="ai-insight-label"><span class="ai-insight-dot"></span>AI Insights</div>
+              <p><strong>Only one ticket on record for 2026 so far — worth sanity-checking against reality:</strong> with 81 tickets logged since this form began, averaging roughly one every few weeks historically, a single ticket in over six months of 2026 is a steep drop. That could genuinely mean fewer client issues, or it could mean tickets are being resolved without this closure form getting filled out. Given the 89-day gap between when Erin Martin's ticket was created and when it was logged as closed, the second explanation seems at least worth ruling out before treating "1 ticket YTD" as a clean signal.</p>
+              <p><strong>The one ticket on record was handled correctly per protocol, but satisfaction was still low:</strong> Erin Martin's engagement-gallery complaint (skin tone, bra strap, background people) maps cleanly to P04 and P05 in the Client Response Protocols doc — both Tier 1, both resolved with a free re-edit, which is exactly what happened here ($1,350 in real editing cost, no cash refund). Despite following protocol, she rated satisfaction 2 out of 5. That gap between "textbook-correct resolution" and "unhappy client" is worth a follow-up call — the fix may have been procedurally right but the delivery or communication around it may not have landed well, especially given the ticket sat open for 89 days before closing.</p>
+            </div>
+          </div>
+
+          <div class="footer">
+            <span>Generated automatically from Jotform Client Support Ticket Closed submissions, assessed against the MMC Client Response Protocols doc. Scope: 2026 and forward only.</span>
             <a href="#">Move Mountains Co.</a>
           </div>
         </div>
@@ -2293,6 +2386,17 @@
         document.getElementById(item.getAttribute('data-target')).classList.add('active');
       });
     });
+
+    (function(){
+      var toggle = document.getElementById('reports-toggle');
+      var list = document.getElementById('reports-list');
+      var chevron = document.getElementById('reports-chevron');
+      toggle.addEventListener('click', function(){
+        var collapsed = list.style.display === 'none';
+        list.style.display = collapsed ? '' : 'none';
+        chevron.style.transform = collapsed ? 'rotate(0deg)' : 'rotate(-90deg)';
+      });
+    })();
   </script>
 </body>
 </html>
