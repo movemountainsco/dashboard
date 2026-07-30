@@ -569,6 +569,58 @@
     .ytd-grid, .prod-grid{grid-template-columns:1fr;}
     .header, .hero, .section, .footer{padding-left:24px; padding-right:24px;}
   }
+  /* ---------- Week picker (sits inside the dark report header) ---------- */
+  .week-picker{
+    position:relative;
+  }
+  .week-select{
+    display:block;
+    margin-top:2px;
+    font-family:inherit;
+    font-size:14px;
+    font-weight:700;
+    color:#fff;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(201,162,39,0.45);
+    border-radius:7px;
+    padding:5px 30px 5px 10px;
+    cursor:pointer;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23e9d68a' d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 10px center;
+    background-size:10px 7px;
+    transition:background-color 0.15s, border-color 0.15s;
+  }
+  .week-select:hover{
+    background-color:rgba(201,162,39,0.18);
+    border-color:var(--gold);
+  }
+  .week-select:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,162,39,0.25);
+  }
+  /* native dropdown list renders on white in most browsers */
+  .week-select option{
+    background:#fff;
+    color:var(--ink);
+    font-weight:600;
+  }
+  .week-note{
+    display:inline-block;
+    margin-left:10px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.3px;
+    color:var(--gold-light);
+    vertical-align:middle;
+  }
+  .week-note.past{
+    color:#f0d9a0;
+  }
 </style>
 </head>
 <body>
