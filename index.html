@@ -2516,7 +2516,7 @@
               </div>
               <div class="cat-card">
                 <div class="cat-name">Total Open Projects</div>
-                <div class="cat-amount">6</div>
+                <div class="cat-amount" id="ph-totproj">4</div>
                 <div class="cat-pct">0 overdue</div>
               </div>
               <div class="cat-card">
@@ -2762,7 +2762,7 @@ function renderPho(date){
   wpSet("ph-pereditor",r.pe+" avg galleries delivered per editor this week");
   wpSet("ph-avgwk",r.aw.toFixed(2));
   wpSet("ph-pendwed",r.pw); wpSet("ph-pendsess",r.ps); wpSet("ph-pendcomm",r.pc);
-  wpSet("ph-venue",r.vn); wpSet("ph-look",r.lk);
+  wpSet("ph-venue",r.vn); wpSet("ph-look",r.lk); wpSet("ph-totproj",r.tp);
   wpSet("ph-ytd",r.cp+" of "+r.tg);
   wpSet("ph-remain",r.lf+" galleries remain in the backlog");
   var pg=document.getElementById("ph-prog"); if(pg) pg.style.width=Math.round(r.cp/r.tg*100)+"%";
