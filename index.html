@@ -939,8 +939,8 @@
 
             <div class="ai-insight">
               <div class="ai-insight-label"><span class="ai-insight-dot"></span>AI Insights</div>
-              <p><strong>This week's mix:</strong> Total payroll fell 19.7% week-over-week to $24,354.66, almost entirely because Shooters collapsed from $10,824.56 to $2,457.06 (-77.3%) — a light field week following two heavy ones. Post-production held steady in contrast: Editors rose 4.6% to $3,426.17 and VA's were essentially flat at $1,687.59, while W2 Hourly actually climbed 20.9% to $9,624.08 and is now the single largest line at 39.5% of the week. Overtime dropped sharply to 3 hrs 16 min, down from 25 hrs 54 min two weeks ago, which is consistent with the lighter shoot load rather than a scheduling change.</p>
-              <p><strong>Year outlook:</strong> At 30 of 52 weeks (58% through the year), YTD spend of $675,052.08 carries a full-year projection of $1,170,090.27 against a W2-only projection of $869,909.04. The roughly $300K gap between those two figures is the contractor, commission and bonus load, and it is that variable portion — not W2 headcount — that drives nearly all the week-to-week swing you see in the history table below. A single quiet shooting week moves the weekly total by almost $6K, so read individual weeks as production-volume signals rather than as changes to the underlying cost base.</p>
+              <p id="pay-ins1"><strong>This week's mix:</strong> Total payroll fell 19.7% week-over-week to $24,354.66, almost entirely because Shooters collapsed from $10,824.56 to $2,457.06 (-77.3%) — a light field week following two heavy ones. Post-production held steady in contrast: Editors rose 4.6% to $3,426.17 and VA's were essentially flat at $1,687.59, while W2 Hourly actually climbed 20.9% to $9,624.08 and is now the single largest line at 39.5% of the week. Overtime dropped sharply to 3 hrs 16 min, down from 25 hrs 54 min two weeks ago, which is consistent with the lighter shoot load rather than a scheduling change.</p>
+              <p id="pay-ins2"><strong>Year outlook:</strong> At 30 of 52 weeks (58% through the year), YTD spend of $675,052.08 carries a full-year projection of $1,170,090.27 against a W2-only projection of $869,909.04. The roughly $300K gap between those two figures is the contractor, commission and bonus load, and it is that variable portion — not W2 headcount — that drives nearly all the week-to-week swing you see in the history table below. A single quiet shooting week moves the weekly total by almost $6K, so read individual weeks as production-volume signals rather than as changes to the underlying cost base.</p>
             </div>
 
             <details class="history-details">
@@ -2554,8 +2554,8 @@
 
             <div class="ai-insight">
               <div class="ai-insight-label"><span class="ai-insight-dot"></span>AI Insights</div>
-              <p><strong>The backlog picture changed sharply this month:</strong> 105 of 217 wedding galleries are now complete (about 48%) with editors averaging 3.55 weddings per week, and the form's projected completion date has pulled in to March 2027 from March 2030. Part of that is genuine throughput — the weekly average has more than doubled since early July — but part is a restatement: the total gallery count was revised down from 298 to 217 on Jul 13, so comparisons that straddle that date are not like-for-like. Both changes push the same direction, which is why the completion estimate moved by three years in three weeks.</p>
-              <p><strong>Still worth double-checking:</strong> the Client Success Rate now reads 17.14%, up from 0.31% before the Jul 13 restatement. The jump suggests the underlying formula was corrected rather than client satisfaction genuinely improving fifty-fold, but 17.14% still looks low against 18 revisions YTD on 105 completed galleries — so this remains a number to confirm with whoever owns the form before treating it as a KPI. Outside of that, open work is light: no overdue projects, no pending sessions or commercial projects, 1 open client revision and 4 open venue albums in progress.</p>
+              <p id="ph-ins1"><strong>The backlog picture changed sharply this month:</strong> 105 of 217 wedding galleries are now complete (about 48%) with editors averaging 3.55 weddings per week, and the form's projected completion date has pulled in to March 2027 from March 2030. Part of that is genuine throughput — the weekly average has more than doubled since early July — but part is a restatement: the total gallery count was revised down from 298 to 217 on Jul 13, so comparisons that straddle that date are not like-for-like. Both changes push the same direction, which is why the completion estimate moved by three years in three weeks.</p>
+              <p id="ph-ins2"><strong>Still worth double-checking:</strong> the Client Success Rate now reads 17.14%, up from 0.31% before the Jul 13 restatement. The jump suggests the underlying formula was corrected rather than client satisfaction genuinely improving fifty-fold, but 17.14% still looks low against 18 revisions YTD on 105 completed galleries — so this remains a number to confirm with whoever owns the form before treating it as a KPI. Outside of that, open work is light: no overdue projects, no pending sessions or commercial projects, 1 open client revision and 4 open venue albums in progress.</p>
             </div>
           </div>
 
@@ -2674,6 +2674,118 @@
         }
       });
     });
-  </script>
+  
+/* ================= Week pickers ================= */
+const PAY=[
+{d:"2026-07-24",l:"July 24, 2026",ws:4181.64,wh:9624.08,sh:2457.06,ed:3426.17,va:1687.59,bo:54.82,co:2923.30,tot:24354.66,ytd:675052.08,wk:30,ot:"3 hrs 16 min",proj:1170090.27,w2p:869909.04,gal:15,galAmt:1505,hl:3,hlAmt:1500},
+{d:"2026-07-17",l:"July 17, 2026",ws:3867.74,wh:7958.88,sh:10824.56,ed:3275.00,va:1688.46,bo:0,co:2726.32,tot:30340.96,ytd:650474.82,wk:29,ot:"None logged",proj:1166368.64,w2p:756752.88,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-07-10",l:"July 10, 2026",ws:4331.21,wh:13356.09,sh:9383.45,ed:1920.00,va:1685.76,bo:0,co:2726.30,tot:33402.81,ytd:618987.94,wk:28,ot:"25 hrs 54 min",proj:1149549.03,w2p:1061507.20,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-07-03",l:"July 3, 2026",ws:4034.35,wh:10627.03,sh:4302.88,ed:2910.00,va:2410.00,bo:0,co:3371.05,tot:27738.39,ytd:585709.03,wk:27,ot:"6 hrs 1 min",proj:1128032.21,w2p:937686.36,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-06-26",l:"June 26, 2026",ws:4227.79,wh:4227.79,sh:7696.20,ed:3406.67,va:1677.30,bo:0,co:1159.74,tot:24595.49,ytd:557645.30,wk:26,ot:"35 hrs 21 min",proj:1115290.60,w2p:499996.64,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-06-19",l:"June 19, 2026",ws:4227.76,wh:10907.45,sh:2422.00,ed:1949.00,va:1774.15,bo:54.83,co:1793.40,tot:23417.45,ytd:528190.00,wk:25,ot:"1 hr 55 min",proj:1098635.20,w2p:880287.72,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-06-12",l:"June 12, 2026",ws:4227.76,wh:10791.73,sh:3611.00,ed:1090.00,va:1428.00,bo:1086.50,co:1785.41,tot:24020.40,ytd:504998.69,wk:24,ot:"15 hrs 9 min",proj:1094163.83,w2p:873854.80,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-06-05",l:"June 5, 2026",ws:4228.06,wh:9840.93,sh:6237.27,ed:1175.00,va:1428.00,bo:0,co:633.66,tot:23542.92,ytd:482075.44,wk:23,ot:"20 hrs",proj:1089909.69,w2p:764537.80,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-05-29",l:"May 29, 2026",ws:4234.86,wh:10497.77,sh:1033.20,ed:1821.67,va:1428.00,bo:0,co:1888.48,tot:22403.98,ytd:459883.64,wk:22,ot:"8 hrs 27 min",proj:1086997.69,w2p:864297.72,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-05-22",l:"May 22, 2026",ws:11162.62,wh:11162.62,sh:3113.46,ed:925.00,va:1428.00,bo:0,co:2056.05,tot:29847.75,ytd:439358.42,wk:21,ot:"4 hrs 4 min",proj:1087935.14,w2p:1267827.08,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-05-15",l:"May 15, 2026",ws:4257.05,wh:11705.54,sh:2896.24,ed:1905.00,va:1428.00,bo:0,co:2058.33,tot:24303.27,ytd:416797.94,wk:20,ot:"10 hrs 22 min",proj:1083674.64,w2p:937087.84,gal:null,galAmt:null,hl:null,hlAmt:null},
+{d:"2026-05-08",l:"May 8, 2026",ws:4257.05,wh:11264.41,sh:4368.00,ed:825.00,va:1430.00,bo:1157.30,co:1727.95,tot:25083.71,ytd:393023.55,wk:19,ot:"2 hrs 21 min",proj:1075643.40,w2p:896969.32,gal:null,galAmt:null,hl:null,hlAmt:null}];
+const PHO=[
+{d:"2026-07-27",l:"July 27, 2026",tg:217,cp:105,lf:112,ta:7,ed:7,aw:3.55,eta:"March 5, 2027",pw:4,ps:0,pc:0,tp:4,lk:0,vn:4,rv:18,sr:"17.14%",or:1,wd:7,ss:1,pe:1},
+{d:"2026-07-20",l:"July 20, 2026",tg:217,cp:91,lf:126,ta:7,ed:7,aw:3.19,eta:"April 22, 2027",pw:6,ps:0,pc:0,tp:6,lk:0,vn:3,rv:13,sr:"14.29%",or:0,wd:2,ss:4,pe:0.29},
+{d:"2026-07-13",l:"July 13, 2026",tg:217,cp:84,lf:133,ta:7,ed:7,aw:3.05,eta:"May 14, 2027",pw:5,ps:4,pc:0,tp:9,lk:0,vn:3,rv:12,sr:"14.29%",or:0,wd:6,ss:3,pe:0.86},
+{d:"2026-07-06",l:"July 6, 2026",tg:298,cp:36,lf:262,ta:7,ed:7,aw:1.35,eta:"March 25, 2030",pw:6,ps:0,pc:0,tp:6,lk:0,vn:3,rv:11,sr:"0.31%",or:0,wd:11,ss:3,pe:1.57},
+{d:"2026-06-28",l:"June 28, 2026",tg:298,cp:54,lf:244,ta:7,ed:7,aw:2.12,eta:"September 10, 2028",pw:10,ps:1,pc:0,tp:11,lk:0,vn:5,rv:11,sr:"0.20%",or:2,wd:8,ss:1,pe:1.14},
+{d:"2026-06-22",l:"June 22, 2026",tg:206,cp:36,lf:170,ta:7,ed:7,aw:1.47,eta:"September 8, 2028",pw:6,ps:0,pc:0,tp:6,lk:2,vn:3,rv:9,sr:"0.25%",or:1,wd:9,ss:7,pe:1.29},
+{d:"2026-06-15",l:"June 15, 2026",tg:206,cp:31,lf:175,ta:7,ed:7,aw:1.32,eta:"December 29, 2028",pw:4,ps:2,pc:1,tp:7,lk:0,vn:0,rv:8,sr:"0.26%",or:0,wd:5,ss:5,pe:0.71},
+{d:"2026-06-08",l:"June 8, 2026",tg:206,cp:27,lf:179,ta:7,ed:7,aw:1.20,eta:"April 17, 2029",pw:3,ps:1,pc:0,tp:4,lk:0,vn:0,rv:9,sr:"0.33%",or:0,wd:8,ss:3,pe:1.14},
+{d:"2026-05-31",l:"May 31, 2026",tg:206,cp:27,lf:179,ta:7,ed:7,aw:1.26,eta:"February 18, 2029",pw:1,ps:0,pc:0,tp:1,lk:0,vn:0,rv:10,sr:"0.37%",or:0,wd:4,ss:2,pe:0.57},
+{d:"2026-05-25",l:"May 25, 2026",tg:206,cp:22,lf:184,ta:10,ed:7,aw:1.07,eta:"September 10, 2029",pw:2,ps:0,pc:0,tp:2,lk:0,vn:0,rv:8,sr:"0.36%",or:0,wd:6,ss:2,pe:0.86},
+{d:"2026-05-16",l:"May 16, 2026",tg:206,cp:23,lf:183,ta:7,ed:7,aw:1.19,eta:"April 26, 2029",pw:4,ps:1,pc:0,tp:5,lk:0,vn:0,rv:8,sr:"0.35%",or:0,wd:7,ss:3,pe:1},
+{d:"2026-05-09",l:"May 9, 2026",tg:206,cp:16,lf:190,ta:7,ed:7,aw:0.87,eta:"July 16, 2030",pw:8,ps:0,pc:0,tp:8,lk:0,vn:0,rv:6,sr:"0.38%",or:1,wd:0,ss:3,pe:0}];
+function wpMoney(v){return "$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function wpSet(id,txt){var e=document.getElementById(id); if(e) e.textContent=txt;}
+function wpPct(a,b){ if(b===0||b===null||b===undefined) return null; return (a-b)/b*100; }
+function wpNote(selId,idx){
+  var sel=document.getElementById(selId); if(!sel) return;
+  var p=sel.parentNode, n=p.querySelector(".week-note");
+  if(!n){ n=document.createElement("span"); n.className="week-note"; p.appendChild(n); }
+  n.textContent = idx===0 ? "Most recent" : idx+" week"+(idx>1?"s":"")+" back";
+  n.className = "week-note" + (idx===0?"":" past");
+}
+function renderPay(date){
+  var i=PAY.findIndex(function(x){return x.d===date;}); if(i<0) return;
+  var r=PAY[i], pv=PAY[i+1]||null;
+  wpSet("pay-total",wpMoney(r.tot));
+  wpSet("pay-weeks",r.wk+" of 52");
+  var b=document.getElementById("pay-badge"), dt=pv?wpPct(r.tot,pv.tot):null;
+  if(b){ if(dt===null){ b.textContent="Earliest week on record"; } else { var up=dt>=0; b.textContent=(up?"▲ ":"▼ ")+Math.abs(dt).toFixed(1)+"% vs last week ("+wpMoney(pv.tot)+")"; b.style.background=up?"#faf3d9":"#eef2f7"; b.style.color=up?"var(--good)":"#456"; b.style.borderColor=up?"var(--gold-light)":"#c9d4e0"; } }
+  var cats=[["w2hr",r.wh,pv&&pv.wh],["shooters",r.sh,pv&&pv.sh],["w2sal",r.ws,pv&&pv.ws],["comm",r.co,pv&&pv.co],["editors",r.ed,pv&&pv.ed],["vas",r.va,pv&&pv.va]];
+  cats.forEach(function(c){
+    var id=c[0], v=c[1], p=c[2];
+    wpSet("pay-"+id,wpMoney(v));
+    var pctOf=r.tot?v/r.tot*100:0;
+    var bar=document.getElementById("pay-"+id+"-b"); if(bar) bar.style.width=pctOf.toFixed(1)+"%";
+    wpSet("pay-"+id+"-p",pctOf.toFixed(1)+"% of weekly total");
+    var de=document.getElementById("pay-"+id+"-d");
+    if(de){ var d=(p===null||p===undefined||p===0)?null:wpPct(v,p);
+      if(d===null){ de.textContent="No prior week"; de.className="cat-delta down"; }
+      else { var u=d>=0; de.textContent=(u?"▲ ":"▼ ")+Math.abs(d).toFixed(1)+"% vs last week"; de.className="cat-delta "+(u?"up":"down"); } }
+  });
+  if(r.gal===null){ wpSet("pay-gal","Not itemised"); wpSet("pay-gal-sub","Editor payout lines were not itemised for this week"); wpSet("pay-hl","Not itemised"); wpSet("pay-hl-sub","Editor payout lines were not itemised for this week"); }
+  else { wpSet("pay-gal",r.gal+" galleries"); wpSet("pay-gal-sub",wpMoney(r.galAmt)+" total paid · "+wpMoney(r.galAmt/r.gal)+" avg / gallery"); wpSet("pay-hl",r.hl+(r.hl===1?" highlight":" highlights")); wpSet("pay-hl-sub",wpMoney(r.hlAmt)+" total paid · "+wpMoney(r.hlAmt/r.hl)+" avg / highlight"); }
+  wpSet("pay-ot",r.ot);
+  wpSet("pay-ytd",wpMoney(r.ytd));
+  wpSet("pay-ytd-weeks","Across "+r.wk+" weeks of payroll");
+  var pg=document.getElementById("pay-prog"); if(pg) pg.style.width=Math.round(r.wk/52*100)+"%";
+  wpSet("pay-prog-label","Week "+r.wk);
+  wpSet("pay-proj",wpMoney(r.proj));
+  wpSet("pay-w2proj",wpMoney(r.w2p));
+  var names={w2hr:"W2 Hourly",shooters:"Shooters",w2sal:"W2 Salary",comm:"Commissions",editors:"Editors",vas:"VA's"};
+  var big=null,bigv=-1;
+  cats.forEach(function(c){ if(c[2]&&c[2]!==0){ var d=Math.abs(wpPct(c[1],c[2])); if(d>bigv){bigv=d;big=c[0];} } });
+  var i1=document.getElementById("pay-ins1");
+  if(i1){ i1.innerHTML="<strong>This week's mix:</strong> Total payroll for the week of "+r.l+" was "+wpMoney(r.tot)+
+    (dt===null?", the earliest week held in this view.":(dt>=0?", up ":", down ")+Math.abs(dt).toFixed(1)+"% on the prior week"+(big?", with "+names[big]+" the largest mover at "+bigv.toFixed(1)+"%.":"."))+
+    " W2 Hourly ran "+wpMoney(r.wh)+" ("+(r.wh/r.tot*100).toFixed(1)+"% of the week) against "+wpMoney(r.sh)+" on shooters and "+wpMoney(r.ed)+" on editors. Overtime logged: "+r.ot+
+    ". Contractor lines are the volatile part of this figure week to week, so treat single-week swings as production-volume signals rather than changes to the underlying cost base."; }
+  var i2=document.getElementById("pay-ins2");
+  if(i2){ i2.innerHTML="<strong>Year outlook:</strong> At "+r.wk+" of 52 weeks ("+Math.round(r.wk/52*100)+"% through the year), YTD spend of "+wpMoney(r.ytd)+
+    " carried a full-year projection of "+wpMoney(r.proj)+" against a W2-only projection of "+wpMoney(r.w2p)+". The gap between those two is the contractor, commission and bonus load — roughly "+
+    wpMoney(Math.abs(r.proj-r.w2p))+" at this point in the year. Note the W2-only projection is recalculated by the form each week and moves sharply, so it is better read as a rough indicator than a stable forecast."; }
+  wpNote("payroll-week",i);
+}
+function renderPho(date){
+  var i=PHO.findIndex(function(x){return x.d===date;}); if(i<0) return;
+  var r=PHO[i];
+  wpSet("ph-weddings",r.wd);
+  wpSet("ph-herosub","Plus "+r.ss+" session-only deliver"+(r.ss===1?"y":"ies")+" · across "+r.ed+" editors");
+  wpSet("ph-pereditor",r.pe+" avg galleries delivered per editor this week");
+  wpSet("ph-avgwk",r.aw.toFixed(2));
+  wpSet("ph-pendwed",r.pw); wpSet("ph-pendsess",r.ps); wpSet("ph-pendcomm",r.pc);
+  wpSet("ph-venue",r.vn); wpSet("ph-look",r.lk);
+  wpSet("ph-ytd",r.cp+" of "+r.tg);
+  wpSet("ph-remain",r.lf+" galleries remain in the backlog");
+  var pg=document.getElementById("ph-prog"); if(pg) pg.style.width=Math.round(r.cp/r.tg*100)+"%";
+  wpSet("ph-prog-a",r.cp+" completed"); wpSet("ph-prog-b",r.tg+" total");
+  wpSet("ph-rev",r.rv);
+  wpSet("ph-revsub",r.or+" currently open · Client Success Rate reported at "+r.sr);
+  wpSet("ph-eta",r.eta);
+  var pct=(r.cp/r.tg*100).toFixed(0);
+  var i1=document.getElementById("ph-ins1");
+  if(i1){ i1.innerHTML="<strong>Backlog position:</strong> as of "+r.l+", "+r.cp+" of "+r.tg+" wedding galleries were complete (about "+pct+"%), leaving "+r.lf+
+    " outstanding with editors averaging "+r.aw.toFixed(2)+" weddings per week — which is what drives the form's "+r.eta+" completion estimate. "+
+    (r.tg===217?"This week uses the restated 217-gallery denominator adopted on Jul 13.":(r.tg===298?"This week used the 298-gallery denominator, which was later restated down to 217 on Jul 13.":"This week used a 206-gallery denominator, before the total was revised to 298 and then to 217."))+
+    " Comparisons that straddle those restatements are not like-for-like."; }
+  var i2=document.getElementById("ph-ins2");
+  if(i2){ i2.innerHTML="<strong>Worth double-checking:</strong> the Client Success Rate for this week reads "+r.sr+
+    ", against "+r.rv+" client revisions YTD and "+r.or+" currently open. Values before Jul 13 sit under 1% and values after jump to double digits, which points to a corrected formula rather than a real change in client satisfaction — so this figure is worth confirming with whoever owns the form before treating it as a KPI. Open work this week: "+
+    r.pw+" pending wedding galleries, "+r.ps+" pending sessions, "+r.pc+" pending commercial projects, "+r.vn+" open venue albums and "+r.lk+" open look-throughs."; }
+  wpNote("photo-week",i);
+}
+var payEl=document.getElementById("payroll-week");
+if(payEl){ payEl.addEventListener("change",function(e){renderPay(e.target.value);}); renderPay(payEl.value); }
+var phoEl=document.getElementById("photo-week");
+if(phoEl){ phoEl.addEventListener("change",function(e){renderPho(e.target.value);}); renderPho(phoEl.value); }
+</script>
 </body>
 </html>
