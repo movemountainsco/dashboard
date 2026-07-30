@@ -878,3 +878,153 @@
           </div>
         </div>
       </section>
+      <!-- ---------- PAYROLL ---------- -->
+      <section id="report-payroll" class="report">
+        <div class="sheet">
+          <div class="header">
+            <div class="eyebrow">Move Mountains Co. · Payroll</div>
+            <h1>Payroll Report</h1>
+            <p>Weekly payout breakdown — select any week to view its figures</p>
+            <div class="meta-row">
+              <div class="meta-item">Week Of<strong id="pay-date">—</strong></div>
+              <div class="meta-item">Weeks Elapsed<strong id="pay-weeks">—</strong></div>
+              <div class="meta-item">Submission Compliance<strong>96%</strong></div>
+            </div>
+          </div>
+          <div class="week-bar">
+            <div>
+              <label for="payroll-week">Week of</label><br>
+              <select class="week-select" id="payroll-week" data-report="payroll">
+                <option value="2026-07-24" selected>Jul 24, 2026</option>
+                <option value="2026-07-17">Jul 17, 2026</option>
+                <option value="2026-07-10">Jul 10, 2026</option>
+                <option value="2026-07-03">Jul 3, 2026</option>
+                <option value="2026-06-26">Jun 26, 2026</option>
+                <option value="2026-06-19">Jun 19, 2026</option>
+                <option value="2026-06-12">Jun 12, 2026</option>
+                <option value="2026-06-05">Jun 5, 2026</option>
+                <option value="2026-05-29">May 29, 2026</option>
+                <option value="2026-05-22">May 22, 2026</option>
+                <option value="2026-05-15">May 15, 2026</option>
+                <option value="2026-05-08">May 8, 2026</option>
+              </select>
+            </div>
+            <div class="week-tag" id="payroll-weektag">Showing <strong>latest</strong> submitted week</div>
+          </div>
+          <div class="hero">
+            <div>
+              <div class="hero-label">Total Paid This Week</div>
+              <div class="hero-number" id="pay-total">—</div>
+              <div class="hero-sub" id="pay-wow">—</div>
+            </div>
+            <div class="badge" id="pay-badge">—</div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">Category Breakdown</h2>
+            <div class="breakdown-grid">
+              <div class="cat-card"><div class="cat-name">W2 Salary</div><div class="cat-amount" id="pay-w2sal">—</div><div class="cat-delta" id="pay-w2sal-d"></div></div>
+              <div class="cat-card"><div class="cat-name">W2 Hourly</div><div class="cat-amount" id="pay-w2hr">—</div><div class="cat-delta" id="pay-w2hr-d"></div></div>
+              <div class="cat-card"><div class="cat-name">Shooters</div><div class="cat-amount" id="pay-shooters">—</div><div class="cat-delta" id="pay-shooters-d"></div></div>
+              <div class="cat-card"><div class="cat-name">Editors</div><div class="cat-amount" id="pay-editors">—</div><div class="cat-delta" id="pay-editors-d"></div></div>
+              <div class="cat-card"><div class="cat-name">VA's (Admins)</div><div class="cat-amount" id="pay-vas">—</div><div class="cat-delta" id="pay-vas-d"></div></div>
+              <div class="cat-card"><div class="cat-name">Commissions</div><div class="cat-amount" id="pay-comm">—</div><div class="cat-delta" id="pay-comm-d"></div></div>
+            </div>
+            <div class="prod-grid">
+              <div class="prod-card"><div class="prod-name">Bonuses</div><div class="prod-value" id="pay-bonuses">—</div></div>
+              <div class="prod-card"><div class="prod-name">Year to Date</div><div class="prod-value" id="pay-ytd">—</div><div class="prod-sub">Cumulative through selected week</div></div>
+            </div>
+          </div>
+
+          <div class="section" style="padding-top:0;">
+            <h2 class="section-title">Weekly History</h2>
+            <div class="history-scroll">
+              <table class="history-table">
+                <thead><tr><th>Week Of</th><th>Total Paid</th><th>WoW Change</th><th>YTD Total</th></tr></thead>
+                <tbody id="pay-history"></tbody>
+              </table>
+            </div>
+            <div class="ai-insight">
+              <div class="ai-insight-label"><span class="ai-insight-dot"></span>AI Insights</div>
+              <p id="pay-insight">—</p>
+            </div>
+          </div>
+          <div class="footer"><span>Source: Jotform "Payroll" — submitted weekly.</span><a href="#">Move Mountains Co.</a></div>
+        </div>
+      </section>
+      <!-- ---------- PHOTO ---------- -->
+      <section id="report-photo" class="report">
+        <div class="sheet">
+          <div class="header">
+            <div class="eyebrow">Move Mountains Co. · Photo</div>
+            <h1>Photo EOW Report</h1>
+            <p>Gallery delivery backlog and editor throughput — select any week</p>
+            <div class="meta-row">
+              <div class="meta-item">Week Of<strong id="ph-date">—</strong></div>
+              <div class="meta-item">Total Editors<strong id="ph-editors">—</strong></div>
+              <div class="meta-item">Submission Compliance<strong>79%</strong></div>
+            </div>
+          </div>
+          <div class="week-bar">
+            <div>
+              <label for="photo-week">Week of</label><br>
+              <select class="week-select" id="photo-week" data-report="photo">
+                <option value="2026-07-27" selected>Jul 27, 2026</option>
+                <option value="2026-07-20">Jul 20, 2026</option>
+                <option value="2026-07-13">Jul 13, 2026</option>
+                <option value="2026-07-06">Jul 6, 2026</option>
+                <option value="2026-06-28">Jun 28, 2026</option>
+                <option value="2026-06-22">Jun 22, 2026</option>
+                <option value="2026-06-15">Jun 15, 2026</option>
+                <option value="2026-06-08">Jun 8, 2026</option>
+                <option value="2026-05-31">May 31, 2026</option>
+                <option value="2026-05-25">May 25, 2026</option>
+                <option value="2026-05-16">May 16, 2026</option>
+                <option value="2026-05-09">May 9, 2026</option>
+              </select>
+            </div>
+            <div class="week-tag" id="photo-weektag">Showing <strong>latest</strong> submitted week</div>
+          </div>
+          <div class="hero">
+            <div>
+              <div class="hero-label">Galleries Completed YTD</div>
+              <div class="hero-number" id="ph-completed">—</div>
+              <div class="hero-sub" id="ph-sub">—</div>
+            </div>
+            <div class="badge" id="ph-badge">—</div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">Backlog &amp; Throughput</h2>
+            <div class="breakdown-grid">
+              <div class="cat-card"><div class="cat-name">Total Wedding Galleries</div><div class="cat-amount" id="ph-total">—</div></div>
+              <div class="cat-card"><div class="cat-name">Remaining</div><div class="cat-amount" id="ph-left">—</div></div>
+              <div class="cat-card"><div class="cat-name">Avg Weddings / Week YTD</div><div class="cat-amount" id="ph-avgwk">—</div></div>
+              <div class="cat-card"><div class="cat-name">Avg Turnaround (days)</div><div class="cat-amount" id="ph-turn">—</div></div>
+              <div class="cat-card"><div class="cat-name">Pending Galleries</div><div class="cat-amount" id="ph-pending">—</div></div>
+              <div class="cat-card"><div class="cat-name">Overdue Projects</div><div class="cat-amount" id="ph-overdue">—</div></div>
+            </div>
+            <div class="prod-grid">
+              <div class="prod-card"><div class="prod-name">Estimated Completion</div><div class="prod-value" id="ph-eta">—</div><div class="prod-sub">At the selected week's pace</div></div>
+              <div class="prod-card"><div class="prod-name">Client Revisions YTD</div><div class="prod-value" id="ph-rev">—</div><div class="prod-sub" id="ph-openrev">—</div></div>
+            </div>
+            <div class="overtime-note"><span>Client Success Rate (as reported by the form)</span><strong id="ph-sr">—</strong></div>
+          </div>
+
+          <div class="section" style="padding-top:0;">
+            <h2 class="section-title">Weekly History</h2>
+            <div class="history-scroll">
+              <table class="history-table">
+                <thead><tr><th>Week Of</th><th>Completed YTD</th><th>Remaining</th><th>Est. Completion</th></tr></thead>
+                <tbody id="ph-history"></tbody>
+              </table>
+            </div>
+            <div class="ai-insight">
+              <div class="ai-insight-label"><span class="ai-insight-dot"></span>AI Insights</div>
+              <p id="ph-insight">—</p>
+            </div>
+          </div>
+          <div class="footer"><span>Source: Jotform "Photo EOW" — submitted weekly, normally by Monday.</span><a href="#">Move Mountains Co.</a></div>
+        </div>
+      </section>
+<!--MORE-->
