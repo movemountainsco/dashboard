@@ -2407,7 +2407,7 @@
             <h1>Weekly Photo Production Report</h1>
             <p>Sourced automatically from Jotform Photo EOW submissions</p>
             <div class="meta-row">
-              <div class="meta-item">Week Of<strong>July 27, 2026</strong></div>
+              <div class="meta-item week-picker">Week Of<select class="week-select" id="photo-week" data-report="photo"><option value="2026-07-27" selected>July 27, 2026</option><option value="2026-07-20">July 20, 2026</option><option value="2026-07-13">July 13, 2026</option><option value="2026-07-06">July 6, 2026</option><option value="2026-06-28">June 28, 2026</option><option value="2026-06-22">June 22, 2026</option><option value="2026-06-15">June 15, 2026</option><option value="2026-06-08">June 8, 2026</option><option value="2026-05-31">May 31, 2026</option><option value="2026-05-25">May 25, 2026</option><option value="2026-05-16">May 16, 2026</option><option value="2026-05-09">May 9, 2026</option></select></div>
               <div class="meta-item">Report Generated<strong>July 30, 2026</strong></div>
               <div class="meta-item">Reported By<strong>Ali Sherin</strong></div>
             </div>
@@ -2416,8 +2416,8 @@
           <div class="hero">
             <div>
               <div class="hero-label">Wedding Deliveries This Week</div>
-              <div class="hero-number">7</div>
-              <div class="hero-sub">Plus 1 session-only delivery · across 7 editors</div>
+              <div class="hero-number" id="ph-weddings">7</div>
+              <div class="hero-sub" id="ph-herosub">Plus 1 session-only delivery · across 7 editors</div>
             </div>
           </div>
 
@@ -2434,11 +2434,11 @@
               <div class="prod-card">
                 <div class="prod-name">Total Editors</div>
                 <div class="prod-value">7</div>
-                <div class="prod-sub">1.0 avg galleries delivered per editor this week</div>
+                <div class="prod-sub" id="ph-pereditor">1.0 avg galleries delivered per editor this week</div>
               </div>
               <div class="prod-card">
                 <div class="prod-name">Avg Weddings / Week (YTD)</div>
-                <div class="prod-value">3.55</div>
+                <div class="prod-value" id="ph-avgwk">3.55</div>
                 <div class="prod-sub">Average turnaround time: 7 days per gallery</div>
               </div>
             </div>
@@ -2449,17 +2449,17 @@
             <div class="breakdown-grid">
               <div class="cat-card">
                 <div class="cat-name">Pending Wedding Galleries</div>
-                <div class="cat-amount">4</div>
+                <div class="cat-amount" id="ph-pendwed">4</div>
                 <div class="cat-pct">Booked, not yet started</div>
               </div>
               <div class="cat-card">
                 <div class="cat-name">Pending Sessions</div>
-                <div class="cat-amount">0</div>
+                <div class="cat-amount" id="ph-pendsess">0</div>
                 <div class="cat-pct">None currently pending</div>
               </div>
               <div class="cat-card">
                 <div class="cat-name">Pending Commercial Projects</div>
-                <div class="cat-amount">0</div>
+                <div class="cat-amount" id="ph-pendcomm">0</div>
                 <div class="cat-pct">None currently pending</div>
               </div>
               <div class="cat-card">
@@ -2469,12 +2469,12 @@
               </div>
               <div class="cat-card">
                 <div class="cat-name">Open Venue Albums</div>
-                <div class="cat-amount">4</div>
+                <div class="cat-amount" id="ph-venue">4</div>
                 <div class="cat-pct">In progress</div>
               </div>
               <div class="cat-card">
                 <div class="cat-name">Open Look-Throughs</div>
-                <div class="cat-amount">0</div>
+                <div class="cat-amount" id="ph-look">0</div>
                 <div class="cat-pct">None currently open</div>
               </div>
             </div>
@@ -2485,18 +2485,18 @@
             <div class="ytd-grid">
               <div class="ytd-card">
                 <div class="ytd-label">Wedding Galleries Completed YTD</div>
-                <div class="ytd-value">105 of 217</div>
-                <div class="ytd-sub">112 galleries remain in the backlog</div>
+                <div class="ytd-value" id="ph-ytd">105 of 217</div>
+                <div class="ytd-sub" id="ph-remain">112 galleries remain in the backlog</div>
                 <div class="progress-wrap">
-                  <div class="progress-track"><div class="progress-fill" style="width:48%"></div></div>
-                  <div class="progress-labels"><span>105 completed</span><span>217 total</span></div>
+                  <div class="progress-track"><div class="progress-fill" id="ph-prog" style="width:48%"></div></div>
+                  <div class="progress-labels"><span id="ph-prog-a">105 completed</span><span id="ph-prog-b">217 total</span></div>
                 </div>
               </div>
               <div class="ytd-card alt">
                 <div class="ytd-label">Client Revisions YTD</div>
-                <div class="ytd-value">18</div>
-                <div class="ytd-sub">1 currently open · Client Success Rate reported at 17.14%</div>
-                <div class="ytd-sub" style="margin-top:12px;">Form's Estimated Date of Completion: <strong style="color:var(--navy);">March 5, 2027</strong></div>
+                <div class="ytd-value" id="ph-rev">18</div>
+                <div class="ytd-sub" id="ph-revsub">1 currently open · Client Success Rate reported at 17.14%</div>
+                <div class="ytd-sub" style="margin-top:12px;">Form's Estimated Date of Completion: <strong style="color:var(--navy);" id="ph-eta">March 5, 2027</strong></div>
               </div>
             </div>
 
