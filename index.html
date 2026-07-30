@@ -767,19 +767,19 @@
             <h1>Weekly Payroll Report</h1>
             <p>Sourced automatically from Jotform payroll submissions</p>
             <div class="meta-row">
-              <div class="meta-item">Week Of<strong>July 24, 2026</strong></div>
+              <div class="meta-item week-picker">Week Of<select class="week-select" id="payroll-week" data-report="payroll"><option value="2026-07-24" selected>July 24, 2026</option><option value="2026-07-17">July 17, 2026</option><option value="2026-07-10">July 10, 2026</option><option value="2026-07-03">July 3, 2026</option><option value="2026-06-26">June 26, 2026</option><option value="2026-06-19">June 19, 2026</option><option value="2026-06-12">June 12, 2026</option><option value="2026-06-05">June 5, 2026</option><option value="2026-05-29">May 29, 2026</option><option value="2026-05-22">May 22, 2026</option><option value="2026-05-15">May 15, 2026</option><option value="2026-05-08">May 8, 2026</option></select></div>
               <div class="meta-item">Report Generated<strong>July 30, 2026</strong></div>
-              <div class="meta-item">Weeks Elapsed (YTD)<strong>30 of 52</strong></div>
+              <div class="meta-item">Weeks Elapsed (YTD)<strong id="pay-weeks">30 of 52</strong></div>
             </div>
           </div>
 
           <div class="hero">
             <div>
               <div class="hero-label">Total Paid Out This Week</div>
-              <div class="hero-number">$24,354.66</div>
+              <div class="hero-number" id="pay-total">$24,354.66</div>
               <div class="hero-sub">Across W2 payroll, contractors, commissions &amp; overtime</div>
             </div>
-            <div class="badge" style="background:#eef2f7; color:#456; border-color:#c9d4e0;">▼ 19.7% vs last week ($30,340.96)</div>
+            <div class="badge" id="pay-badge" style="background:#eef2f7; color:#456; border-color:#c9d4e0;">▼ 19.7% vs last week ($30,340.96)</div>
           </div>
 
           <div class="section" style="padding-top:24px; padding-bottom:0;">
@@ -795,50 +795,50 @@
 
               <div class="cat-card">
                 <div class="cat-name">W2 Hourly</div>
-                <div class="cat-amount">$9,624.08</div>
-                <div class="cat-delta up">▲ 20.9% vs last week</div>
-                <div class="bar-track"><div class="bar-fill" style="width:39.5%"></div></div>
-                <div class="cat-pct">39.5% of weekly total</div>
+                <div class="cat-amount" id="pay-w2hr">$9,624.08</div>
+                <div class="cat-delta up" id="pay-w2hr-d">▲ 20.9% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" id="pay-w2hr-b" style="width:39.5%"></div></div>
+                <div class="cat-pct" id="pay-w2hr-p">39.5% of weekly total</div>
               </div>
 
               <div class="cat-card">
                 <div class="cat-name">Shooters</div>
-                <div class="cat-amount">$2,457.06</div>
-                <div class="cat-delta up">▼ 77.3% vs last week</div>
-                <div class="bar-track"><div class="bar-fill" style="width:10.1%"></div></div>
-                <div class="cat-pct">10.1% of weekly total</div>
+                <div class="cat-amount" id="pay-shooters">$2,457.06</div>
+                <div class="cat-delta down" id="pay-shooters-d">▼ 77.3% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" id="pay-shooters-b" style="width:10.1%"></div></div>
+                <div class="cat-pct" id="pay-shooters-p">10.1% of weekly total</div>
               </div>
 
               <div class="cat-card">
                 <div class="cat-name">W2 Salary</div>
-                <div class="cat-amount">$4,181.64</div>
-                <div class="cat-delta up">▲ 8.1% vs last week</div>
-                <div class="bar-track"><div class="bar-fill" style="width:17.2%"></div></div>
-                <div class="cat-pct">17.2% of weekly total</div>
+                <div class="cat-amount" id="pay-w2sal">$4,181.64</div>
+                <div class="cat-delta up" id="pay-w2sal-d">▲ 8.1% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" id="pay-w2sal-b" style="width:17.2%"></div></div>
+                <div class="cat-pct" id="pay-w2sal-p">17.2% of weekly total</div>
               </div>
 
               <div class="cat-card">
                 <div class="cat-name">Commissions</div>
-                <div class="cat-amount">$2,923.30</div>
-                <div class="cat-delta down">▲ 7.2% vs last week</div>
-                <div class="bar-track"><div class="bar-fill" style="width:12.0%"></div></div>
-                <div class="cat-pct">12.0% of weekly total</div>
+                <div class="cat-amount" id="pay-comm">$2,923.30</div>
+                <div class="cat-delta up" id="pay-comm-d">▲ 7.2% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" id="pay-comm-b" style="width:12.0%"></div></div>
+                <div class="cat-pct" id="pay-comm-p">12.0% of weekly total</div>
               </div>
 
               <div class="cat-card">
                 <div class="cat-name">Editors</div>
-                <div class="cat-amount">$3,426.17</div>
-                <div class="cat-delta down">▲ 4.6% vs last week</div>
-                <div class="bar-track"><div class="bar-fill" style="width:14.1%"></div></div>
-                <div class="cat-pct">14.1% of weekly total</div>
+                <div class="cat-amount" id="pay-editors">$3,426.17</div>
+                <div class="cat-delta up" id="pay-editors-d">▲ 4.6% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" id="pay-editors-b" style="width:14.1%"></div></div>
+                <div class="cat-pct" id="pay-editors-p">14.1% of weekly total</div>
               </div>
 
               <div class="cat-card">
                 <div class="cat-name">VA's (Admins)</div>
-                <div class="cat-amount">$1,687.59</div>
-                <div class="cat-delta down">▼ 0.1% vs last week</div>
-                <div class="bar-track"><div class="bar-fill" style="width:6.9%"></div></div>
-                <div class="cat-pct">6.9% of weekly total</div>
+                <div class="cat-amount" id="pay-vas">$1,687.59</div>
+                <div class="cat-delta down" id="pay-vas-d">▼ 0.1% vs last week</div>
+                <div class="bar-track"><div class="bar-fill" id="pay-vas-b" style="width:6.9%"></div></div>
+                <div class="cat-pct" id="pay-vas-p">6.9% of weekly total</div>
               </div>
 
             </div>
@@ -846,19 +846,19 @@
             <div class="prod-grid">
               <div class="prod-card">
                 <div class="prod-name">Galleries Delivered</div>
-                <div class="prod-value">13 galleries</div>
-                <div class="prod-sub">$1,655.00 total paid · $127.31 avg / gallery</div>
+                <div class="prod-value" id="pay-gal">15 galleries</div>
+                <div class="prod-sub" id="pay-gal-sub">$1,505.00 total paid · $100.33 avg / gallery</div>
               </div>
               <div class="prod-card">
                 <div class="prod-name">Highlights Delivered</div>
-                <div class="prod-value">3 highlights</div>
-                <div class="prod-sub">$1,500.00 total paid · $500.00 avg / highlight</div>
+                <div class="prod-value" id="pay-hl">3 highlights</div>
+                <div class="prod-sub" id="pay-hl-sub">$1,500.00 total paid · $500.00 avg / highlight</div>
               </div>
             </div>
 
             <div class="overtime-note">
               <span>Overtime hours logged this week</span>
-              <strong>3 hrs 16 min</strong>
+              <strong id="pay-ot">3 hrs 16 min</strong>
             </div>
           </div>
 
@@ -868,19 +868,19 @@
 
               <div class="ytd-card">
                 <div class="ytd-label">YTD Total Paid Out</div>
-                <div class="ytd-value">$675,052.08</div>
-                <div class="ytd-sub">Across 30 weeks of payroll (W2 · Contractors · Commissions · Bonuses)</div>
+                <div class="ytd-value" id="pay-ytd">$675,052.08</div>
+                <div class="ytd-sub"><span id="pay-ytd-weeks">Across 30 weeks of payroll</span> (W2 · Contractors · Commissions · Bonuses)</div>
                 <div class="progress-wrap">
-                  <div class="progress-track"><div class="progress-fill" style="width:58%"></div></div>
-                  <div class="progress-labels"><span>Week 30</span><span>52 weeks</span></div>
+                  <div class="progress-track"><div class="progress-fill" id="pay-prog" style="width:58%"></div></div>
+                  <div class="progress-labels"><span id="pay-prog-label">Week 30</span><span>52 weeks</span></div>
                 </div>
               </div>
 
               <div class="ytd-card alt">
                 <div class="ytd-label">Projected Full-Year Spend</div>
-                <div class="ytd-value">$1,170,090.27</div>
+                <div class="ytd-value" id="pay-proj">$1,170,090.27</div>
                 <div class="ytd-sub">Based on current weekly pace, projected by the payroll form</div>
-                <div class="ytd-sub" style="margin-top:12px;">W2-only projection: <strong style="color:var(--navy);">$869,909.04</strong></div>
+                <div class="ytd-sub" style="margin-top:12px;">W2-only projection: <strong style="color:var(--navy);" id="pay-w2proj">$869,909.04</strong></div>
               </div>
 
             </div>
