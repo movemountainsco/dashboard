@@ -640,13 +640,41 @@ async function submitForm(key) {
 /* ------------------------------------------------------------------ */
 
 function show(id) {
-  ['gate', 'noaccess', 'app'].forEach((k) => {
-    document.getElementById(k).hidden = k !== id;
+  ['gate', 'setup', 'noaccess', 'app'].forEach((k) => {
+    const el = document.getElementById(k);
+    if (el) el.hidden = k !== id;
   });
 }
 
+/**
+ * Identity is missing or not enabled on this site. Explain what to do
+ * instead of leaving a blank page — a blank page gives whoever opens it
+ * no way to tell a broken deploy from an unfinished setup.
+ */
+function showSetup(detail) {
+  const el = document.getElementById('setup-detail');
+  if (el && detail) el.textContent = detail;
+  show('setup');
+}
+
+let identityReady = false;
+
 async function boot() {
-  const user = identity.currentUser();
+  identityReady = true;
+
+  if (!identity) {
+    showSetup('The Netlify Identity script did not load.');
+    return;
+  }
+
+  let user = null;
+  try {
+    user = identity.currentUser();
+  } catch (err) {
+    showSetup(err?.message || 'Identity could not start.');
+    return;
+  }
+
   if (!user) {
     show('gate');
     return;
@@ -686,14 +714,42 @@ async function boot() {
 
 document.addEventListener('click', (e) => {
   const el = e.target.closest('[data-action="logout"]');
-  if (el) identity.logout();
+  if (el && identity) identity.logout();
 });
 
-document.getElementById('login-btn').addEventListener('click', () => identity.open('login'));
+document.getElementById('login-btn').addEventListener('click', () => {
+  if (!identity) return showSetup('The Netlify Identity script did not load.');
+  try {
+    identity.open('login');
+  } catch (err) {
+    showSetup(err?.message || 'Identity is not enabled for this site.');
+  }
+});
 
-identity.on('init', () => { boot(); });
-identity.on('login', () => { identity.close(); boot(); });
-identity.on('logout', () => { state.session = null; state.compliance = null; show('gate'); });
-identity.on('error', (err) => toast(err?.message || 'Sign-in failed', 'bad'));
+if (!identity) {
+  showSetup('The Netlify Identity script did not load.');
+} else {
+  identity.on('init', () => { boot(); });
+  identity.on('login', () => { identity.close(); boot(); });
+  identity.on('logout', () => { state.session = null; state.compliance = null; show('gate'); });
+  identity.on('error', (err) => {
+    // Before init this is almost always "Identity not enabled on this site";
+    // afterwards it's an ordinary bad-password style failure.
+    if (!identityReady) showSetup(err?.message || 'Identity is not enabled for this site.');
+    else toast(err?.message || 'Sign-in failed', 'bad');
+  });
 
-identity.init({ locale: 'en' });
+  try {
+    identity.init({ locale: 'en' });
+  } catch (err) {
+    showSetup(err?.message || 'Identity could not start.');
+  }
+
+  // If `init` never fires, Identity isn't configured. Say so rather than
+  // sitting on a blank screen forever.
+  setTimeout(() => {
+    if (!identityReady) {
+      showSetup('Identity did not respond. It is most likely not enabled yet.');
+    }
+  }, 5000);
+}
