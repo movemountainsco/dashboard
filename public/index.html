@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Move Mountains Co. — Reporting</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <!-- ============ Signed-out gate ============ -->
+  <div id="gate" class="gate" hidden>
+    <div class="gate-card">
+      <div class="gate-mark">MMC</div>
+      <h1>Move Mountains Co.</h1>
+      <p class="gate-sub">Department reporting &amp; management dashboard</p>
+      <button id="login-btn" class="btn btn-primary btn-lg">Sign in</button>
+      <p class="gate-note">Use the email address your Move Mountains account was set up with. No account yet? Ask Sean or Yan to send an invite.</p>
+    </div>
+  </div>
+
+  <!-- ============ No-role fallback ============ -->
+  <div id="noaccess" class="gate" hidden>
+    <div class="gate-card">
+      <div class="gate-mark warn">!</div>
+      <h1>Almost there</h1>
+      <p class="gate-sub">Your account is signed in but hasn't been assigned to a department yet.</p>
+      <p class="gate-note">Ask Sean or Yan to add a role to your account in Netlify &rarr; Identity. Until then there's nothing here for you to see.</p>
+      <button class="btn btn-ghost" data-action="logout">Sign out</button>
+    </div>
+  </div>
+
+  <!-- ============ App ============ -->
+  <div id="app" class="app" hidden>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">MMC</div>
+        <div class="brand-text">
+          <strong>Move Mountains</strong>
+          <span>Reporting</span>
+        </div>
+      </div>
+
+      <nav id="nav" class="nav"></nav>
+
+      <div class="sidebar-foot">
+        <div class="who">
+          <div id="who-name" class="who-name"></div>
+          <div id="who-role" class="who-role"></div>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-action="logout">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div id="view" class="view"></div>
+    </main>
+  </div>
+
+  <!-- ============ Toast ============ -->
+  <div id="toast" class="toast" hidden></div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
