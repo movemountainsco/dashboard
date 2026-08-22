@@ -76,6 +76,10 @@ a { color: inherit; }
 .gate-sub { color: var(--text-dim); margin: 0 0 24px; font-size: 14px; line-height: 1.5; }
 .gate-note { color: var(--text-faint); font-size: 12.5px; line-height: 1.6; margin: 20px 0 0; }
 
+.setup-steps { text-align: left; margin: 0 0 22px; }
+.setup-steps ol { margin: 0; padding-left: 20px; color: var(--text-dim); font-size: 13px; line-height: 1.85; }
+.setup-steps strong { color: var(--text); }
+
 /* ---------------- App shell ---------------- */
 
 .app {
