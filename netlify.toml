@@ -1,0 +1,31 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+  command = "echo 'Static site — no build step required.'"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Single-page app: every non-API, non-asset path serves the shell and lets
+# the client router decide what to show. `force = false` means real files
+# (CSS, JS, images) are still served directly.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Report data is per-user and role-gated. Never let a CDN or browser cache
+# an API response — one person's payroll figures must not be served to the
+# next person who asks.
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
