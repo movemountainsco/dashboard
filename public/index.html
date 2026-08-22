@@ -10,14 +10,36 @@
 </head>
 <body>
 
-  <!-- ============ Signed-out gate ============ -->
-  <div id="gate" class="gate" hidden>
+  <!-- ============ Signed-out gate ============
+       Visible by default and hidden by JS once we know better. If the
+       scripts fail entirely, the user still sees a real page rather than
+       an empty background. -->
+  <div id="gate" class="gate">
     <div class="gate-card">
       <div class="gate-mark">MMC</div>
       <h1>Move Mountains Co.</h1>
       <p class="gate-sub">Department reporting &amp; management dashboard</p>
       <button id="login-btn" class="btn btn-primary btn-lg">Sign in</button>
       <p class="gate-note">Use the email address your Move Mountains account was set up with. No account yet? Ask Sean or Yan to send an invite.</p>
+    </div>
+  </div>
+
+  <!-- ============ Identity not configured ============ -->
+  <div id="setup" class="gate" hidden>
+    <div class="gate-card">
+      <div class="gate-mark warn">!</div>
+      <h1>One setup step left</h1>
+      <p class="gate-sub">Netlify Identity isn't switched on for this site yet, so there's no way to sign in.</p>
+      <div class="setup-steps">
+        <ol>
+          <li>Open <strong>Netlify</strong> &rarr; <strong>movemountainsco-dashboard</strong></li>
+          <li>Go to <strong>Identity</strong> and click <strong>Enable Identity</strong></li>
+          <li>Under <strong>Registration</strong>, choose <strong>Invite only</strong></li>
+          <li>Invite your team, then set each person's role under <strong>Edit Settings &rarr; Roles</strong></li>
+        </ol>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="location.reload()">Reload once that's done</button>
+      <p class="gate-note" id="setup-detail"></p>
     </div>
   </div>
 
