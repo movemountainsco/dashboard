@@ -349,6 +349,127 @@ export const DEPARTMENTS = {
     ],
     derived: [],
   },
+
+  vendor_relations: {
+    key: 'vendor_relations',
+    label: 'Vendor Relations',
+    cadence: CADENCE.WEEKLY,
+    role: 'vendor_relations',
+    accent: '#14b8a6',
+    headline: { key: 'total_closings', label: 'New Partnerships Closed', type: 'number' },
+    // Mapped from the live "Vendor Relations EOW" Jotform (26 submissions).
+    // The original form's three "Did you close any...?" yes/no gates are gone:
+    // a count of 0 already says no, and asking twice only creates a way for the
+    // two answers to disagree.
+    fields: [
+      { key: 'venue_closings', label: 'New Venues Closed', type: 'number', required: true, group: 'Closings' },
+      { key: 'venue_info', label: 'Venue Details', type: 'longtext', group: 'Closings', help: 'Venue, state, events per year, services we are preferred for, notes' },
+      { key: 'planner_closings', label: 'New Planner Relationships Closed', type: 'number', required: true, group: 'Closings' },
+      { key: 'planner_info', label: 'Planner Details', type: 'longtext', group: 'Closings' },
+      { key: 'commercial_closings', label: 'New Commercial / Stream Clients Closed', type: 'number', required: true, group: 'Closings' },
+      { key: 'commercial_info', label: 'Commercial Details', type: 'longtext', group: 'Closings' },
+      { key: 'reach_outs_venues', label: 'Reach Outs to New Venues', type: 'number', group: 'Outreach' },
+      { key: 'reach_outs_planners', label: 'Reach Outs to New Planners', type: 'number', group: 'Outreach' },
+      { key: 'reach_outs_stream', label: 'Reach Outs to Potential Stream Clients', type: 'number', group: 'Outreach' },
+      { key: 'commercial_revenue', label: 'Total Commercial Revenue', type: 'currency', group: 'Revenue' },
+      { key: 'revenue_generated', label: 'Total Sales / Revenue Generated', type: 'currency', group: 'Revenue' },
+      { key: 'partnership_leads', label: 'Leads From Closed Partnerships (Month)', type: 'number', group: 'Partnership Yield' },
+      { key: 'partnership_bookings', label: 'Bookings From Closed Partnerships (Month)', type: 'number', group: 'Partnership Yield' },
+      { key: 'partnership_revenue', label: 'Revenue From Closed Partnerships (Month)', type: 'currency', group: 'Partnership Yield' },
+      { key: 'notes', label: 'Notes', type: 'longtext', group: 'Notes' },
+    ],
+    derived: [
+      {
+        key: 'total_closings', label: 'New Partnerships Closed', type: 'number',
+        compute: (d) => sum(d, ['venue_closings', 'planner_closings', 'commercial_closings']),
+      },
+      {
+        key: 'total_reach_outs', label: 'Total Reach Outs', type: 'number',
+        compute: (d) => sum(d, ['reach_outs_venues', 'reach_outs_planners', 'reach_outs_stream']),
+      },
+      {
+        key: 'close_rate', label: 'Close Rate On Outreach', type: 'percent',
+        compute: (d) => pct(
+          sum(d, ['venue_closings', 'planner_closings', 'commercial_closings']),
+          sum(d, ['reach_outs_venues', 'reach_outs_planners', 'reach_outs_stream']),
+        ),
+      },
+      {
+        key: 'revenue_per_partnership_booking', label: 'Revenue Per Partnership Booking', type: 'currency',
+        compute: (d) => safeDiv(num(d.partnership_revenue), num(d.partnership_bookings)),
+      },
+    ],
+  },
+
+  scheduling: {
+    key: 'scheduling',
+    label: 'Scheduling',
+    cadence: CADENCE.WEEKLY,
+    role: 'scheduling',
+    accent: '#0891b2',
+    headline: { key: 'team_members_scheduled', label: 'Team Members Scheduled', type: 'number' },
+    /**
+     * Cross-department visibility. Scheduling is judged on controlling
+     * subcontractor cost, so its dashboard shows Payroll's shooter spend next
+     * to its own projection. Read-only: Scheduling never edits Payroll data.
+     */
+    sees: [
+      {
+        department: 'payroll',
+        fields: ['shooters', 'contractor_total'],
+        why: 'Scheduling controls subcontractor cost, so it needs Payroll shooter spend beside its own projection.',
+      },
+    ],
+    // NOTE: derived from what the Scheduling dashboard already renders.
+    // Sanity-check these before week one.
+    fields: [
+      { key: 'team_members_scheduled', label: 'Team Members Scheduled', type: 'number', required: true, group: 'Coverage' },
+      { key: 'booked_events', label: 'Booked Events', type: 'number', required: true, group: 'Coverage' },
+      { key: 'events_fully_assigned', label: 'Booked Events With All Roles Assigned', type: 'number', required: true, group: 'Coverage' },
+      { key: 'shooter_slots_total', label: 'Total Shooter Slots', type: 'number', group: 'Coverage' },
+      { key: 'shooter_slots_filled', label: 'Shooter Slots Filled', type: 'number', group: 'Coverage' },
+      { key: 'open_lead_photo', label: 'Open — Lead Photo', type: 'number', group: 'Open Roles' },
+      { key: 'open_second_photo', label: 'Open — Second Photo', type: 'number', group: 'Open Roles' },
+      { key: 'open_lead_video', label: 'Open — Lead Video', type: 'number', group: 'Open Roles' },
+      { key: 'open_second_video', label: 'Open — Second Video', type: 'number', group: 'Open Roles' },
+      { key: 'open_photo_booths', label: 'Open — Photo Booths', type: 'number', group: 'Open Roles' },
+      { key: 'open_livestream', label: 'Open — Livestream', type: 'number', group: 'Open Roles' },
+      { key: 'open_content', label: 'Open — Content Creation', type: 'number', group: 'Open Roles' },
+      { key: 'roster_lead_photo', label: 'Lead Photographers', type: 'number', group: 'Roster' },
+      { key: 'roster_second_photo', label: 'Second Photographers', type: 'number', group: 'Roster' },
+      { key: 'roster_lead_video', label: 'Lead Videographers', type: 'number', group: 'Roster' },
+      { key: 'roster_second_video', label: 'Second Videographers', type: 'number', group: 'Roster' },
+      { key: 'roster_booth', label: 'Luxe Booth Attendants', type: 'number', group: 'Roster' },
+      { key: 'roster_livestream', label: 'Live Stream Attendants', type: 'number', group: 'Roster' },
+      { key: 'roster_content', label: 'Content Creators', type: 'number', group: 'Roster' },
+      { key: 'confirmations_submitted', label: 'Confirmation Forms Submitted', type: 'number', group: 'Confirmations' },
+      { key: 'confirmations_expected', label: 'Confirmation Forms Expected', type: 'number', group: 'Confirmations' },
+      { key: 'subcontractor_projection', label: 'Subcontractor Cost Projection (Full Year)', type: 'currency', group: 'Cost' },
+      { key: 'notes', label: 'Notes', type: 'longtext', group: 'Notes' },
+    ],
+    derived: [
+      {
+        key: 'event_fulfillment_rate', label: 'Event-Based Fulfillment Rate', type: 'percent',
+        compute: (d) => pct(num(d.events_fully_assigned), num(d.booked_events)),
+      },
+      {
+        key: 'shooter_fulfillment_rate', label: 'Shooter-Based Fulfillment Rate', type: 'percent',
+        compute: (d) => pct(num(d.shooter_slots_filled), num(d.shooter_slots_total)),
+      },
+      {
+        key: 'total_open_roles', label: 'Total Open Roles', type: 'number',
+        compute: (d) => sum(d, ['open_lead_photo', 'open_second_photo', 'open_lead_video', 'open_second_video', 'open_photo_booths', 'open_livestream', 'open_content']),
+      },
+      {
+        key: 'total_roster', label: 'Total Roster', type: 'number',
+        compute: (d) => sum(d, ['roster_lead_photo', 'roster_second_photo', 'roster_lead_video', 'roster_second_video', 'roster_booth', 'roster_livestream', 'roster_content']),
+      },
+      {
+        key: 'confirmations_outstanding', label: 'Confirmations Outstanding', type: 'number',
+        compute: (d) => Math.max(num(d.confirmations_expected) - num(d.confirmations_submitted), 0),
+      },
+    ],
+  },
 };
 
 export const DEPARTMENT_KEYS = Object.keys(DEPARTMENTS);
@@ -416,6 +537,7 @@ export function serializableSchema() {
       role: dept.role,
       accent: dept.accent,
       headline: dept.headline,
+      sees: dept.sees || null,
       fields: dept.fields,
       derived: (dept.derived || []).map(({ key: k, label, type }) => ({ key: k, label, type })),
     };
