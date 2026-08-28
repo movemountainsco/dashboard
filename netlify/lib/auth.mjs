@@ -10,14 +10,19 @@
  * Roles are set per-user in the Netlify UI:
  *   Netlify → Project → Identity → (user) → Edit Settings → Roles
  *
- * Recognised roles:
- *   management  - sees every department + the compliance dashboard
- *   payroll     - Payroll
- *   marketing   - Marketing
- *   photo       - Photo
- *   gear        - Gear
- *   sales       - Sales
- *   planning    - Planning
+ * Recognised roles. One role per department, plus `management`. A person can
+ * hold more than one department role.
+ *
+ *   management        - sees and writes every department + the compliance view
+ *   payroll           - Payroll
+ *   marketing         - Marketing
+ *   photo             - Photo
+ *   video             - Video
+ *   gear              - Gear
+ *   sales             - Sales
+ *   planning          - Planning (each planner files their own report)
+ *   vendor_relations  - Vendor Relations
+ *   scheduling        - Scheduling (also sees Payroll shooter spend, read-only)
  */
 
 import { DEPARTMENTS, DEPARTMENT_KEYS } from './schema.mjs';
