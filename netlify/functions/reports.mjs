@@ -14,7 +14,9 @@ import {
 } from '../lib/auth.mjs';
 import { DEPARTMENTS } from '../lib/schema.mjs';
 import { isValidPeriod } from '../lib/periods.mjs';
-import { getReport, listReports, putReport } from '../lib/store.mjs';
+import {
+  getReport, listReports, listReportsForPeriod, putReport, isPerPerson,
+} from '../lib/store.mjs';
 
 export default async (req, context) => {
   const user = getUser(context);
@@ -29,19 +31,31 @@ async function handleGet(req, user) {
   const url = new URL(req.url);
   const department = url.searchParams.get('department');
   const period = url.searchParams.get('period');
+  const submitter = url.searchParams.get('submitter');
+  const mine = url.searchParams.get('mine') === 'true';
 
   if (!department || !DEPARTMENTS[department]) {
     return badRequest('Unknown department.');
   }
   if (!canRead(user, department)) return forbidden();
 
+  // `mine=true` is how a planner asks for their own report without needing to
+  // know or spell their own email.
+  const who = mine ? user.email : submitter;
+
   if (period) {
-    const report = await getReport(department, period);
+    // Per-person department with no specific person asked for: return every
+    // planner's report for that week rather than arbitrarily picking one.
+    if (isPerPerson(department) && !who) {
+      const reports = await listReportsForPeriod(department, period);
+      return json({ reports, perPerson: true });
+    }
+    const report = await getReport(department, period, who);
     return json({ report });
   }
 
-  const reports = await listReports(department);
-  return json({ reports });
+  const reports = await listReports(department, { submitter: who });
+  return json({ reports, perPerson: isPerPerson(department) });
 }
 
 async function handlePost(req, user) {
