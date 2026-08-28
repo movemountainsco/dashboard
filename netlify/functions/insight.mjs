@@ -17,7 +17,7 @@
 
 import { getStore } from '@netlify/blobs';
 import {
-  getUser, canRead, json, unauthorized, forbidden, badRequest,
+  getUser, canRead, json, unauthorized, forbidden, badRequest, isManagement,
 } from '../lib/auth.mjs';
 import { DEPARTMENTS, DEPARTMENT_KEYS } from '../lib/schema.mjs';
 import { isValidPeriod } from '../lib/periods.mjs';
@@ -31,11 +31,6 @@ const HISTORY_DEPTH = 8;
 
 function store() {
   return getStore({ name: 'insights', consistency: 'strong' });
-}
-
-function isManagement(user) {
-  const roles = user?.app_metadata?.roles || [];
-  return roles.includes('admin') || roles.includes('management');
 }
 
 export default async (req, context) => {
