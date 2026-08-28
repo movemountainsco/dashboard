@@ -21,6 +21,7 @@
 
 import {
   getUser, json, unauthorized, forbidden, badRequest,
+  isManagement, readableDepartments, writableDepartments,
 } from '../lib/auth.mjs';
 import { DEPARTMENTS } from '../lib/schema.mjs';
 import {
@@ -28,27 +29,17 @@ import {
   TICKET_PRIORITY, ESCALATION_DAYS,
 } from '../lib/tickets.mjs';
 
-function roles(user) {
-  return user?.app_metadata?.roles || [];
-}
-
-function isManagement(user) {
-  const r = roles(user);
-  return r.includes('admin') || r.includes('management');
-}
-
-/** Departments this user may raise a ticket on behalf of. */
-function writableDepartments(user) {
-  if (isManagement(user)) return Object.keys(DEPARTMENTS);
-  return roles(user).filter((r) => DEPARTMENTS[r]);
-}
-
-/** Either side can close: origin department, planning, or management. */
+/**
+ * Either side can close: the origin department, planning (which owns the
+ * client conversation), or management.
+ *
+ * Note `user` here is the normalised object from getUser() — { email, name,
+ * roles } — not the raw Identity user, so roles are read off `user.roles`.
+ */
 function canWriteTicket(user, ticket) {
   if (isManagement(user)) return true;
-  const r = roles(user);
-  if (r.includes('planning')) return true;
-  return r.includes(ticket.origin_department);
+  if (user.roles.includes('planning')) return true;
+  return user.roles.includes(ticket.origin_department);
 }
 
 export default async (req, context) => {
