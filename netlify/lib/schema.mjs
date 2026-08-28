@@ -335,6 +335,20 @@ export const DEPARTMENTS = {
     role: 'planning',
     accent: '#8b5cf6',
     headline: { key: 'active_events', label: 'Active Events', type: 'number' },
+    /**
+     * Each planner files their OWN end-of-week report. The planning manager
+     * does not file one — they read what the planners submit.
+     *
+     * A week only counts as complete once every planner has filed. Leave
+     * `expected_submitters` empty and the roster is inferred from whoever has
+     * submitted before; fill it in to make the expectation explicit, which is
+     * the only way a planner who has NEVER submitted shows up as missing.
+     */
+    per_person: true,
+    expected_submitters: [
+      // 'planner-one@movemountains.co',
+      // 'planner-two@movemountains.co',
+    ],
     // NOTE: Planning had no existing Jotform — starter fields, edit freely.
     fields: [
       { key: 'active_events', label: 'Active Events', type: 'number', required: true, group: 'Workload' },
@@ -538,6 +552,7 @@ export function serializableSchema() {
       accent: dept.accent,
       headline: dept.headline,
       sees: dept.sees || null,
+      per_person: Boolean(dept.per_person),
       fields: dept.fields,
       derived: (dept.derived || []).map(({ key: k, label, type }) => ({ key: k, label, type })),
     };
