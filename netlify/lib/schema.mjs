@@ -171,10 +171,8 @@ export const DEPARTMENTS = {
     fields: [
       { key: 'total_wedding_galleries', label: 'Total Wedding Galleries', type: 'number', required: true, group: 'Galleries' },
       { key: 'completed_ytd', label: 'Completed YTD', type: 'number', required: true, group: 'Galleries' },
-      { key: 'left', label: 'Left', type: 'number', group: 'Galleries' },
       { key: 'avg_turnaround', label: 'Average Turnaround Time (days)', type: 'number', group: 'Galleries' },
       { key: 'total_editors', label: 'Total Editors', type: 'number', group: 'Team' },
-      { key: 'avg_galleries_per_editor', label: 'Average Galleries Per Editor', type: 'number', group: 'Team' },
       { key: 'delivery_sessions', label: 'Weekly Delivery — Sessions', type: 'number', group: 'Weekly Delivery' },
       { key: 'delivery_weddings', label: 'Weekly Delivery — Weddings', type: 'number', group: 'Weekly Delivery' },
       { key: 'avg_weddings_per_week_ytd', label: 'Average Weddings Per Week YTD', type: 'number', group: 'Weekly Delivery' },
@@ -182,7 +180,6 @@ export const DEPARTMENTS = {
       { key: 'pending_sessions', label: 'Pending Sessions', type: 'number', group: 'Pipeline' },
       { key: 'pending_wedding_galleries', label: 'Pending Wedding Galleries', type: 'number', group: 'Pipeline' },
       { key: 'pending_commercial', label: 'Pending Commercial Projects', type: 'number', group: 'Pipeline' },
-      { key: 'total_projects', label: 'Total Projects', type: 'number', group: 'Pipeline' },
       { key: 'open_look_throughs', label: 'Open Look Throughs', type: 'number', group: 'Open Items' },
       { key: 'overdue_projects', label: 'Overdue Projects', type: 'number', group: 'Open Items' },
       { key: 'open_venue_albums', label: 'Open Venue Albums', type: 'number', group: 'Open Items' },
@@ -198,6 +195,73 @@ export const DEPARTMENTS = {
       {
         key: 'completion_pct', label: 'Completion %', type: 'percent',
         compute: (d) => pct(num(d.completed_ytd), num(d.total_wedding_galleries)),
+      },
+      {
+        key: 'left', label: 'Galleries Left', type: 'number',
+        compute: (d) => num(d.total_wedding_galleries) - num(d.completed_ytd),
+      },
+      {
+        key: 'total_projects', label: 'Total Projects', type: 'number',
+        compute: (d) => sum(d, ['pending_sessions', 'pending_wedding_galleries', 'pending_commercial']),
+      },
+      {
+        key: 'avg_galleries_per_editor', label: 'Average Galleries Per Editor', type: 'number',
+        compute: (d) => safeDiv(sum(d, ['delivery_sessions', 'delivery_weddings']), num(d.total_editors)),
+      },
+    ],
+  },
+
+  video: {
+    key: 'video',
+    label: 'Video',
+    cadence: CADENCE.WEEKLY,
+    role: 'video',
+    accent: '#ef4444',
+    headline: { key: 'total_deliverables', label: 'Deliverables This Week', type: 'number' },
+    fields: [
+      { key: 'highlights_delivered', label: 'Highlights Delivered', type: 'number', required: true, group: 'Deliveries' },
+      { key: 'weddings_shot', label: 'Weddings Shot Last Weekend', type: 'number', group: 'Deliveries' },
+      { key: 'doc_cuts_delivered', label: 'Doc Cuts Delivered', type: 'number', group: 'Deliveries' },
+      { key: 'teasers_delivered', label: 'Teasers Delivered', type: 'number', group: 'Deliveries' },
+      { key: 'stationaries_delivered', label: 'Stationaries Delivered', type: 'number', group: 'Deliveries' },
+      { key: 'total_editors', label: 'Current Editors', type: 'number', required: true, group: 'Team' },
+      { key: 'avg_turnaround', label: 'Average Turnaround Time (days)', type: 'number', group: 'Team' },
+      { key: 'highlights_delivered_ytd', label: 'Highlights Delivered YTD', type: 'number', required: true, group: 'Backlog' },
+      { key: 'highlights_target_year', label: 'Highlights Target For The Year', type: 'number', required: true, group: 'Backlog' },
+      { key: 'weeks_elapsed', label: 'Weeks Elapsed This Year', type: 'number', required: true, group: 'Backlog', help: 'Used to work out the pace needed to clear the backlog' },
+      { key: 'open_highlights', label: 'Total Open Highlights / Projects', type: 'number', group: 'Open Work' },
+      { key: 'open_client_revisions', label: 'Open Client Revisions', type: 'number', group: 'Open Work' },
+      { key: 'open_commercial', label: 'Open Commercial Projects', type: 'number', group: 'Open Work' },
+      { key: 'open_podcasts', label: 'Open Podcasts', type: 'number', group: 'Open Work' },
+      { key: 'notes', label: 'Notes', type: 'longtext', group: 'Notes' },
+    ],
+    derived: [
+      {
+        key: 'total_deliverables', label: 'Deliverables This Week', type: 'number',
+        compute: (d) => sum(d, ['highlights_delivered', 'doc_cuts_delivered', 'teasers_delivered', 'stationaries_delivered']),
+      },
+      {
+        key: 'highlights_left', label: 'Highlights Left', type: 'number',
+        compute: (d) => num(d.highlights_target_year) - num(d.highlights_delivered_ytd),
+      },
+      {
+        key: 'completion_pct', label: 'Completion %', type: 'percent',
+        compute: (d) => pct(num(d.highlights_delivered_ytd), num(d.highlights_target_year)),
+      },
+      {
+        key: 'avg_videos_per_editor', label: 'Avg Videos Per Editor This Week', type: 'number',
+        compute: (d) => safeDiv(num(d.highlights_delivered), num(d.total_editors)),
+      },
+      {
+        key: 'avg_videos_per_week_ytd', label: 'Avg Videos Per Week (YTD)', type: 'number',
+        compute: (d) => safeDiv(num(d.highlights_delivered_ytd), num(d.weeks_elapsed)),
+      },
+      {
+        key: 'pace_needed', label: 'Pace Needed To Finish By Year End', type: 'number',
+        compute: (d) => safeDiv(
+          num(d.highlights_target_year) - num(d.highlights_delivered_ytd),
+          Math.max(52 - num(d.weeks_elapsed), 0),
+        ),
       },
     ],
   },
