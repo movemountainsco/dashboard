@@ -21,7 +21,7 @@ import {
 } from '../lib/auth.mjs';
 import { DEPARTMENTS, DEPARTMENT_KEYS } from '../lib/schema.mjs';
 import { isValidPeriod } from '../lib/periods.mjs';
-import { getReport, listReports } from '../lib/store.mjs';
+import { getReport, listReports, isPerPerson, submitterSlug } from '../lib/store.mjs';
 import {
   buildDepartmentPrompt, buildManagementPrompt, generate,
   DEPT_SYSTEM, MGMT_SYSTEM, isConfigured,
@@ -46,6 +46,8 @@ export default async (req, context) => {
   let scope = url.searchParams.get('scope');
   let department = url.searchParams.get('department');
   let period = url.searchParams.get('period');
+  let submitter = url.searchParams.get('submitter')
+    || (url.searchParams.get('mine') === 'true' ? user.email : null);
   let refresh = req.method === 'POST';
 
   if (req.method === 'POST') {
@@ -58,6 +60,7 @@ export default async (req, context) => {
     scope = body.scope || scope;
     department = body.department || department;
     period = body.period || period;
+    submitter = body.submitter || (body.mine ? user.email : submitter);
   } else if (req.method !== 'GET') {
     return json({ error: 'Method not allowed' }, 405);
   }
@@ -71,12 +74,12 @@ export default async (req, context) => {
   }
 
   if (scope === 'management') return handleManagement({ user, period, refresh });
-  return handleDepartment({ user, department, period, refresh });
+  return handleDepartment({ user, department, period, refresh, submitter });
 };
 
 /* ------------------------------------------------------------------ */
 
-async function handleDepartment({ user, department, period, refresh }) {
+async function handleDepartment({ user, department, period, refresh, submitter }) {
   if (!department || !DEPARTMENTS[department]) return badRequest('Unknown department.');
   if (!canRead(user, department)) return forbidden();
 
@@ -89,7 +92,15 @@ async function handleDepartment({ user, department, period, refresh }) {
     );
   }
 
-  const key = `${department}/${period}.json`;
+  // Per-person departments need their own person's report, not whichever one
+  // happened to be written first. Default to the caller when they belong to
+  // the department, so a planner opening their own week just works.
+  const perPerson = isPerPerson(department);
+  const who = perPerson ? (submitter || user.email) : null;
+
+  const key = perPerson
+    ? `${department}/${period}/${submitterSlug(who)}.json`
+    : `${department}/${period}.json`;
   const blobs = store();
 
   if (!refresh) {
@@ -97,13 +108,20 @@ async function handleDepartment({ user, department, period, refresh }) {
     if (cached) return json({ ok: true, cached: true, insight: cached });
   }
 
-  const current = await getReport(department, period);
+  const current = await getReport(department, period, who);
   if (!current) {
-    return json({ ok: false, error: `No ${dept.label} report on record for ${period}.` }, 404);
+    return json({
+      ok: false,
+      error: perPerson
+        ? `No ${dept.label} report on record for ${period} from ${who}.`
+        : `No ${dept.label} report on record for ${period}.`,
+    }, 404);
   }
 
-  // Newest-first history, excluding the period we are summarising.
-  const all = await listReports(department);
+  // Newest-first history, excluding the period we are summarising. For a
+  // per-person department this is scoped to one person, so a planner is
+  // compared against their own prior weeks and not against a colleague's.
+  const all = await listReports(department, who ? { submitter: who } : {});
   const older = all
     .filter((r) => r.period < period)
     .sort((a, b) => (a.period < b.period ? 1 : -1));
@@ -125,6 +143,7 @@ async function handleDepartment({ user, department, period, refresh }) {
   const insight = {
     department,
     period,
+    submitter: who,
     text: result.text,
     model: result.model,
     generated_at: new Date().toISOString(),
