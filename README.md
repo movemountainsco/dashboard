@@ -24,13 +24,27 @@ This is important — without it, anyone who finds the URL can create an account
 | Person | Email | Roles to assign |
 |---|---|---|
 | Sean | sean@movemountains.co | `management` |
-| Yan | *(their email)* | `management` |
-| Kevin | *(their email)* | `payroll` |
-| Raul | *(their email)* | `sales`, `planning` |
-| Hannah | *(their email)* | `sales`, `planning` |
+| Yan | *(confirm)* | `management` |
+| Kevin | *(confirm)* | `payroll` |
+| Raul | *(confirm)* | `sales`, `planning` |
+| Hannah | hannah@movemountains.co | `sales`, `planning` |
 | Ali Sherin | ali@movemountains.co | `photo` |
-| Gear owner | gear@movemountains.co | `gear` |
-| Marketing owner | *(their email)* | `marketing` |
+| Aryel Fernandes | *(confirm)* | `gear` |
+| Lauren | *(confirm)* | `marketing` |
+| Chiradee | *(confirm)* | `marketing` |
+| Komiljon Sayfiev | *(confirm)* | `video` |
+| Jackie Sahagian | jackie@movemountains.co | `vendor_relations` |
+| **?** | *(unassigned)* | `scheduling` |
+
+> **Email domain — resolve before inviting.** Sean has referred to the domain as
+> **mmc.co**, but every address that appears in actual form submissions is
+> **@movemountains.co** (`hannah@`, `jackie@`, `sean@`, `ali@`). Invites sent to
+> the wrong domain fail silently — nobody gets an email and nothing surfaces in
+> the Identity UI. Confirm which is live before sending any.
+
+> **Still unowned:** `scheduling` has no named owner. The Data Reconciliation and
+> Order EOW forms also have no identified submitter yet. Photo (Ali) and Video
+> (Komiljon) are confirmed from the submissions themselves, not from Sean.
 
 ### 3. Assign roles
 
@@ -38,7 +52,11 @@ Roles are **not** set during the invite. After someone accepts:
 
 Identity → click the user → **Edit Settings** → **Roles** → add the role(s) above → Save.
 
-Valid roles: `management`, `payroll`, `marketing`, `photo`, `gear`, `sales`, `planning`.
+Valid roles: `management`, `payroll`, `marketing`, `photo`, `video`, `gear`, `sales`,
+`planning`, `vendor_relations`, `scheduling`.
+
+A person can hold more than one role — Raul and Hannah each hold `sales` and
+`planning`; Lauren and Chiradee both hold `marketing`.
 
 A user with no role sees a "your account isn't assigned to a department yet"
 screen rather than an empty app.
@@ -47,15 +65,18 @@ screen rather than an empty app.
 
 ## Who sees what
 
-| Role | Can see & submit |
-|---|---|
-| `management` | Every department, plus the compliance overview |
-| `payroll` | Payroll |
-| `marketing` | Marketing |
-| `photo` | Photo |
-| `gear` | Gear |
-| `sales` | Sales |
-| `planning` | Planning |
+| Role | Who | Can see &amp; submit |
+|---|---|---|
+| `management` | Sean, Yan | Every department, plus the compliance overview |
+| `payroll` | Kevin | Payroll |
+| `marketing` | Lauren, Chiradee | Marketing |
+| `photo` | Ali Sherin | Photo |
+| `video` | Komiljon Sayfiev | Video |
+| `gear` | Aryel Fernandes | Gear |
+| `sales` | Raul, Hannah | Sales |
+| `planning` | Raul, Hannah | Planning — each planner files their own report |
+| `vendor_relations` | Jackie Sahagian | Vendor Relations |
+| `scheduling` | *unassigned* | Scheduling — also sees Payroll shooter spend, read-only |
 
 Management can also **submit on someone's behalf** — useful when a department
 head is out and the week still needs filing.
