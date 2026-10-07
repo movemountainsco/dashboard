@@ -351,19 +351,31 @@ function renderBatch() {
 }
 
 function openPrintView(html) {
-  const bar = `<div class="mmc-printbar" style="position:sticky;top:0;background:#F1EEE9;border-bottom:1px solid #DBD4C9;padding:10px 16px;font-family:Archivo,Arial,sans-serif;font-stretch:125%;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:11px;display:flex;justify-content:space-between;gap:12px;align-items:center;">
+  const bar = `<div class="mmc-printbar" style="position:sticky;top:0;z-index:5;background:#F1EEE9;border-bottom:1px solid #DBD4C9;padding:10px 16px;font-family:Archivo,Arial,sans-serif;font-stretch:125%;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:11px;display:flex;justify-content:space-between;gap:12px;align-items:center;">
     <span>Print view</span>
-    <button type="button" onclick="print()" style="appearance:none;border:0;background:#000;color:#fff;font:inherit;letter-spacing:.14em;text-transform:uppercase;font-size:11px;padding:10px 14px;cursor:pointer;">Print</button>
+    <button type="button" id="mmc-print" style="appearance:none;border:0;background:#000;color:#fff;font:inherit;letter-spacing:.14em;text-transform:uppercase;font-size:11px;padding:10px 14px;cursor:pointer;">Print</button>
   </div>
-  <style>@media print { .mmc-printbar { display: none !important; } }</style>`;
-  const doc = String(html || "").includes("</body>")
-    ? String(html).replace("</body>", `${bar}</body>`)
-    : `${bar}${html || ""}`;
-  const popup = window.open("", "_blank", "noopener");
+  <style>@media print { .mmc-printbar { display: none !important; } }</style>
+  <script src="/print-bar.js"></script>`;
+  const source = String(html || "");
+  let doc = source;
+  if (/<body[^>]*>/i.test(source)) {
+    doc = source.replace(/<body([^>]*)>/i, `<body$1>${bar}`);
+  } else {
+    doc = `${bar}${source}`;
+  }
+  // window.open(..., "noopener") returns null, so the new tab stays about:blank.
+  // Write first, then drop the opener so the report cannot reach this session.
+  const popup = window.open("", "_blank");
   if (!popup) return;
   popup.document.open();
   popup.document.write(doc);
   popup.document.close();
+  try {
+    popup.opener = null;
+  } catch {
+    /* already severed */
+  }
 }
 
 document.addEventListener("click", async (event) => {
