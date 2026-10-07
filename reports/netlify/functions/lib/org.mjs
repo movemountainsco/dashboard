@@ -1,7 +1,5 @@
-import { createRequire } from "node:module";
-
-const require = createRequire(import.meta.url);
-const org = require("../../../data/org.json");
+// Static JSON import so the Netlify esbuild bundle inlines the catalog.
+import org from "../../../data/org.json" with { type: "json" };
 
 export function loadOrg() {
   return org;

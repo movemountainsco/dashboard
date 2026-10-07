@@ -1,8 +1,6 @@
-import { createRequire } from "node:module";
+// Static JSON import so the Netlify esbuild bundle inlines the catalog.
+import types from "../../../data/types.json" with { type: "json" };
 import { slug } from "./util.mjs";
-
-const require = createRequire(import.meta.url);
-const types = require("../../../data/types.json");
 
 export function loadTypes() {
   return types;

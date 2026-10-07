@@ -48,9 +48,17 @@ Create a **new** site from `movemountainsco/dashboard`. Do not reuse the departm
 - Node 22
 - Custom domain: `reports.movemountains.co`
 
+The live site is [mmc-reports.netlify.app](https://mmc-reports.netlify.app). The primary domain is `reports.movemountains.co`.
+
 `/api/*` rewrites to the `api` function. Every other path serves `public/index.html`, and the browser routes `/`, `/report/<id>`, and `/batch/<id>`.
 
 If the Netlify UI base directory is already `reports` and a build looks for `reports/reports/public`, set the UI publish directory to `public` and functions to `netlify/functions`. Those are the same folders once the base is applied. The toml keeps the repository-root paths above so the site settings match this folder.
+
+From inside `reports/`, the CLI deploy uses those local paths:
+
+```bash
+netlify deploy --prod --dir public --functions netlify/functions
+```
 
 Blobs are created on first write. No manual store setup.
 

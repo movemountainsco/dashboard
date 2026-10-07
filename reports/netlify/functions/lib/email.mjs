@@ -42,9 +42,7 @@ export function buildBatchEmail({ batch, reports, origin }) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="background-color:#FFFFFF;">
   <tr><td align="center" style="padding:40px 20px;">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;">
-      <tr><td align="left" style="padding:0 0 36px 2px;">
-        <a href="https://www.movemountains.co/" style="text-decoration:none;"><img src="https://images.squarespace-cdn.com/content/561de3afe4b0e681f07cce7f/a0a4c40f-7df9-4be9-b241-27b690869394/mm-logo-dark-300.png" width="75" alt="Move Mountains Co." style="display:block;width:75px;height:auto;border:0;"></a>
-      </td></tr>
+      <tr><td align="left" style="padding:0 0 36px 0;font-family:'Archivo',Arial,Helvetica,sans-serif;font-stretch:125%;font-weight:500;text-transform:uppercase;font-size:11px;letter-spacing:0.16em;color:#000000;"><a href="https://www.movemountains.co/" style="color:#000000;text-decoration:none;">MOVE MOUNTAINS CO. · REPORTS</a></td></tr>
       <tr><td style="font-family:'Archivo',Arial,Helvetica,sans-serif;font-stretch:125%;font-weight:500;text-transform:uppercase;font-size:11px;letter-spacing:0.22em;color:#6E6A64;padding:0 0 14px 0;">Reports · ${escapeHtml(batch.id)}</td></tr>
       <tr><td style="font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:300;font-style:italic;font-size:40px;line-height:1.15;color:#000000;padding:0 0 22px 0;border-bottom:1px solid #D1D1D1;">${count} ${noun} filed</td></tr>
       <tr><td style="font-family:'Poppins',Arial,Helvetica,sans-serif;font-weight:300;font-size:16px;line-height:1.7;color:#000000;padding:22px 0 8px 0;">The latest batch is on the reports site. Open the batch, or jump to one report. Reply to this note goes to management@.</td></tr>
