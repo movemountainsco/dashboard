@@ -1,0 +1,19 @@
+{
+  "name": "mmc-reports",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Move Mountains Co. reports library. One place for every MMC report, with Google sign-in and a token ingest API.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "start": "node dev-server.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.0.1",
+    "jose": "^5.9.6"
+  }
+}

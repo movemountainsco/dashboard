@@ -1,0 +1,579 @@
+{
+  "company": "Move Mountains Co.",
+  "domain": "movemountains.co",
+  "departments": [
+    {
+      "id": "sales",
+      "name": "Sales",
+      "head": {
+        "name": "Raul Samayoa",
+        "email": "raul@movemountains.co"
+      },
+      "parent": null,
+      "rollsUp": []
+    },
+    {
+      "id": "planning",
+      "name": "Planning",
+      "head": {
+        "name": "Chelsea Mace",
+        "email": "chelseamace@movemountains.co"
+      },
+      "parent": null,
+      "rollsUp": []
+    },
+    {
+      "id": "scheduling",
+      "name": "Scheduling",
+      "head": {
+        "name": "Mason Pimental",
+        "email": "mason@movemountains.co"
+      },
+      "parent": null,
+      "rollsUp": []
+    },
+    {
+      "id": "management",
+      "name": "Management",
+      "head": {
+        "name": "Sean Brown",
+        "email": "sean@movemountains.co"
+      },
+      "parent": null,
+      "rollsUp": []
+    },
+    {
+      "id": "production",
+      "name": "Production",
+      "head": {
+        "name": "Yan Ortiz",
+        "email": "yan@movemountains.co"
+      },
+      "parent": null,
+      "rollsUp": [
+        "data",
+        "photo-editing",
+        "video-editing",
+        "gear",
+        "orders"
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Data",
+      "head": {
+        "name": "Roane Purificacion",
+        "email": "roane@movemountains.co"
+      },
+      "parent": "production",
+      "rollsUp": []
+    },
+    {
+      "id": "photo-editing",
+      "name": "Photo Editing",
+      "head": {
+        "name": "Ali Sherin",
+        "email": "ali@movemountains.co"
+      },
+      "parent": "production",
+      "rollsUp": []
+    },
+    {
+      "id": "video-editing",
+      "name": "Video Editing",
+      "head": {
+        "name": "Komiljon Sayfiev",
+        "email": "koyla@movemountains.co"
+      },
+      "parent": "production",
+      "rollsUp": []
+    },
+    {
+      "id": "gear",
+      "name": "Gear",
+      "head": {
+        "name": "Kenneth (Kenny) Barrios",
+        "email": "kenneth@movemountains.co"
+      },
+      "parent": "production",
+      "rollsUp": []
+    },
+    {
+      "id": "orders",
+      "name": "Orders",
+      "head": {
+        "name": "Kenneth (Kenny) Barrios",
+        "email": "kenneth@movemountains.co"
+      },
+      "parent": "production",
+      "rollsUp": []
+    }
+  ],
+  "people": [
+    {
+      "name": "Joshua Ortiz",
+      "email": "ortiz@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": [
+        "Josh Ortiz"
+      ]
+    },
+    {
+      "name": "Mason Pimental",
+      "email": "mason@movemountains.co",
+      "department": "scheduling",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Melissa Gallego",
+      "email": "melissa@movemountains.co",
+      "department": "production",
+      "function": "Shooter + editor",
+      "aliases": []
+    },
+    {
+      "name": "Kenneth (Kenny) Barrios",
+      "email": "kenneth@movemountains.co",
+      "department": "gear",
+      "function": "Shooter + editor",
+      "aliases": [
+        "Kenny Barrios",
+        "Kenneth Barrios"
+      ]
+    },
+    {
+      "name": "Jayden Fontalvo",
+      "email": "jayden@movemountains.co",
+      "department": "production",
+      "function": "Shooter + editor",
+      "aliases": []
+    },
+    {
+      "name": "Anastasiia Tolstova",
+      "email": "anastasia@movemountains.co",
+      "department": "production",
+      "function": "Shooter + editor",
+      "aliases": [
+        "Anastasia Tolstova"
+      ]
+    },
+    {
+      "name": "Lauren Pomeroy",
+      "email": "pomeroy@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Yan Ortiz",
+      "email": "yan@movemountains.co",
+      "department": "production",
+      "function": "Shooter + editor",
+      "aliases": []
+    },
+    {
+      "name": "Amanda Vaccaro",
+      "email": "amanda@movemountains.co",
+      "department": "production",
+      "function": "Shooter + editor",
+      "aliases": []
+    },
+    {
+      "name": "Raul Samayoa",
+      "email": "raul@movemountains.co",
+      "department": "sales",
+      "function": "Shooter (occasional)",
+      "aliases": []
+    },
+    {
+      "name": "Sean Brown",
+      "email": "sean@movemountains.co",
+      "department": "management",
+      "function": "Shooter (occasional)",
+      "aliases": []
+    },
+    {
+      "name": "Aryel Fernandes",
+      "email": "aryel@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Gustavo Bravo",
+      "email": "gustavo@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Jaffer Hasan",
+      "email": "jaffer@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Kaitlyn Kilpatrick",
+      "email": "kaitlyn@movemountains.co",
+      "department": "production",
+      "function": "Shooter + editor",
+      "aliases": []
+    },
+    {
+      "name": "Crystal Cordones",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Andre Freeman",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Tiahna Somero",
+      "email": "tiahna@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Maha Shahid",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Doungvesal (Vee) Pich",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": [
+        "Vee Pich",
+        "Doungvesal Pich"
+      ]
+    },
+    {
+      "name": "Tatiana Duque",
+      "email": "tatiana@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": [
+        "Tati Duque"
+      ]
+    },
+    {
+      "name": "Ana Luiza Azize",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Ryan Holland",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Felipe Figueiredo",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Alejandra Caballero",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Cole Paul",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Hector Duran",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Enmanuel Gomez",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Francisco (Cisco) Chacon",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": [
+        "Cisco Chacon",
+        "Francisco Chacon"
+      ]
+    },
+    {
+      "name": "Jessenia Grijalva",
+      "email": "jessenia@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Denisse Portuhondo",
+      "email": "denisse@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Meaghan Garrahan",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Anthony Guirguis",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Jaimie Macari",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Gabriela Gonzalez",
+      "email": "gabriela@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Ilan Juarez",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Danysha Estrada",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Gabriel Stewart",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Pablo Gonzalez",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Jason Cardoza",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Alexander Razo",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Alejandro Blandon",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Marinn Danis",
+      "email": "marinn@movemountains.co",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Stephen Forcino",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Olajide Adeleke",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Jessie Barrios",
+      "email": "",
+      "department": "production",
+      "function": "Shooter",
+      "aliases": []
+    },
+    {
+      "name": "Ali Sherin",
+      "email": "ali@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Souvik Mondal",
+      "email": "souvik@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Vishal Kumar",
+      "email": "vishal@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Jit Roy",
+      "email": "roy@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Sumit Bisht",
+      "email": "sumit@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Julian Gutierrez",
+      "email": "julian@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Reinardi Nugraha",
+      "email": "reinardi@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Julia Vieira",
+      "email": "julia@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Amr Mortada",
+      "email": "amr@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Komiljon Sayfiev",
+      "email": "koyla@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Justin Vallescas",
+      "email": "justin@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Ahmed Mortada",
+      "email": "ahmed@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Kiryl Sidarenka",
+      "email": "kiryl@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Karli LeClair-Sandoval",
+      "email": "karli@movemountains.co",
+      "department": "video-editing",
+      "function": "Editor",
+      "aliases": []
+    },
+    {
+      "name": "Rischa Matienzo",
+      "email": "rischa@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor (1 revision)",
+      "aliases": []
+    },
+    {
+      "name": "Brandon Pugsley",
+      "email": "brandon@movemountains.co",
+      "department": "photo-editing",
+      "function": "Editor (1 revision)",
+      "aliases": []
+    },
+    {
+      "name": "Chelsea Mace",
+      "email": "chelseamace@movemountains.co",
+      "department": "planning",
+      "function": "Head",
+      "aliases": []
+    },
+    {
+      "name": "Roane Purificacion",
+      "email": "roane@movemountains.co",
+      "department": "data",
+      "function": "Head",
+      "aliases": [
+        "Roane"
+      ]
+    }
+  ]
+}

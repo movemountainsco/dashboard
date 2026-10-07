@@ -1,0 +1,68 @@
+[
+  {
+    "id": "weekly-autopsy",
+    "label": "Weekly autopsy",
+    "cadence": "Tuesdays, 6:59 AM ET",
+    "group": "Weekly"
+  },
+  {
+    "id": "delivery-summary",
+    "label": "Delivery summary",
+    "cadence": "Tuesdays, 6:59 AM ET",
+    "group": "Weekly"
+  },
+  {
+    "id": "speed-to-lead",
+    "label": "Speed to lead",
+    "cadence": "Mondays",
+    "group": "Weekly"
+  },
+  {
+    "id": "weekday-leads",
+    "label": "Weekday leads alert",
+    "cadence": "Weekdays",
+    "group": "Alerts"
+  },
+  {
+    "id": "travel-deadline",
+    "label": "Travel deadline check",
+    "cadence": "As filed",
+    "group": "Alerts"
+  },
+  {
+    "id": "monthly-shooter",
+    "label": "Shooter",
+    "cadence": "Monthly",
+    "group": "Monthly"
+  },
+  {
+    "id": "monthly-editor",
+    "label": "Editor",
+    "cadence": "Monthly",
+    "group": "Monthly"
+  },
+  {
+    "id": "monthly-dept-head",
+    "label": "Department head",
+    "cadence": "Monthly",
+    "group": "Monthly"
+  },
+  {
+    "id": "monthly-department",
+    "label": "Department",
+    "cadence": "Monthly",
+    "group": "Monthly"
+  },
+  {
+    "id": "monthly-rollup",
+    "label": "Internal staff roll-up",
+    "cadence": "Monthly",
+    "group": "Monthly"
+  },
+  {
+    "id": "venue-conversion",
+    "label": "Venue conversion",
+    "cadence": "As filed",
+    "group": "Reports"
+  }
+]
